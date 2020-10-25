@@ -1,6 +1,8 @@
     var ldoorSprite;
+    var llightSprite;
             
     var rdoorSprite;
+    var rlightSprite;
 
     var power = 100;
 
@@ -165,6 +167,7 @@
             this.load.image('Office','fnafpicture/Office.png');
             this.load.spritesheet('ldoor','fnafpicture/ldoor.png',{frameWidth: 120,frameHeight:393});
             this.load.image('rdoor','fnafpicture/rdoor.png');
+            this.load.image('llighton','fnafpicture/llighton.png');
             this.load.image('button','fnafpicture/button.png');
             this.load.image('mbutton', 'fnafpicture/muteb.png');
             this.load.image('camera','fnafpicture/cambutton.png');
@@ -172,6 +175,7 @@
             this.load.image('yusage','fnafpicture/yellowusage.png');
             this.load.image('rusage','fnafpicture/redusage.png');
             this.load.audio('doormove', 'audio/doormove.mp3');
+            this.load.audio('lighttrigger', 'audio/lighttrigger.mp3');
             this.load.audio('officenoise', 'audio/officenoise.mp3');
             this.load.audio('cameranoise', 'audio/cameranoise.mp3');
             this.load.audio('ambient1', 'audio/ambient1.mp3');
@@ -203,6 +207,10 @@
                 loop: true,
                 volume: 0.4
             }
+            var loopSound2 = {
+                loop: true,
+                volume: 1.5
+            }
             gameState.ldoor = this.physics.add.group();
             gameState.rdoor = this.physics.add.group();
             gameState.camera = this.physics.add.group();
@@ -213,22 +221,23 @@
                 
             });*/  
             this.add.sprite(100,window.innerHeight-60,'gusage').setOrigin(0,0);
-            
+            this.scene.pause('camera');
             //audio
             gameState.doormove = this.sound.add('doormove');
+            gameState.lighttrigger = this.sound.add('lighttrigger');
             gameState.cameranoise = this.sound.add('cameranoise');
             gameState.officenoise = this.sound.add('officenoise');
             gameState.officenoise.play(loopSound);
             gameState.ambient1 = this.sound.add('ambient1');
-            gameState.ambient1.play(loopSound);
+            gameState.ambient1.play(loopSound2);
             gameState.phonecall = this.sound.add('phonecall');
             gameState.phonecall.play();
             //Right Door
-            rdoorSprite = gameState.rdoor.create(990,63,'ldoor').setOrigin(0,0).setFlipX(true);
+            rdoorSprite = gameState.rdoor.create(990,63,'ldoor').setOrigin(0,0).setFlipX(true).setDepth(2);
             gameState.ldoorButton = this.add.sprite(20,150,'button').setOrigin(0,0).setInteractive().setDepth(2);
             gameState.llightButton = this.add.sprite(20,230,'button').setOrigin(0,0).setInteractive().setDepth(2);
             //Left Door
-            ldoorSprite = gameState.ldoor.create(89,63,'ldoor').setOrigin(0,0);
+            ldoorSprite = gameState.ldoor.create(89,63,'ldoor').setOrigin(0,0).setDepth(2);
             gameState.rdoorButton = this.add.sprite(1130,150,'button').setOrigin(0,0).setInteractive().setDepth(2);
             gameState.rlightButton = this.add.sprite(1130,230,'button').setOrigin(0,0).setInteractive().setDepth(2);
             //Usage colors
@@ -264,6 +273,28 @@
                     }
                 }
             });
+            gameState.llightButton.on('pointerup', () => {
+                if(power > 0&& cameraOn === false){
+                    llightOn = !(llightOn);
+                    if(rlightOn === true){
+                        rlightOn = false;
+                        rlightSprite.destroy();
+                    }
+                    if(llightOn === false){
+                        gameState.lighttrigger.pause();
+                        secondcons /= 2;
+                        second -= 1;
+                        powerlevel += 1;
+                        llightSprite.destroy();
+                    }
+                    else {
+                        gameState.lighttrigger.play(loopSound2);
+                        secondcons *= 2;
+                        powerlevel -= 1;
+                        llightSprite = this.add.image(0,0,'llighton').setOrigin(0,0).setScale(10).setDepth(1);
+                    }
+                }
+            });
             gameState.rdoorButton.on('pointerup', () => {
                 if(power > 0 && cameraOn === false){
                     gameState.doormove.play();
@@ -281,6 +312,28 @@
                     }
                 }
             });
+            gameState.rlightButton.on('pointerup', () => {
+                if(power > 0&& cameraOn === false){
+                    rlightOn = !(rlightOn);
+                    if(llightOn === true){
+                        llightOn = false;
+                        llightSprite.destroy();
+                    }
+                    if(rlightOn === false){
+                        gameState.lighttrigger.pause();
+                        secondcons /= 2;
+                        second -= 1;
+                        powerlevel += 1;
+                        rlightSprite.destroy();
+                    }
+                    else {
+                        gameState.lighttrigger.play(loopSound2);
+                        secondcons *= 2;
+                        powerlevel -= 1;
+                        rlightSprite = this.add.image(600,0,'llighton').setOrigin(0,0).setScale(10).setDepth(1).setFlipX(true);
+                    }
+                }
+            });
             gameState.camera.on('pointerover', () => {
                 if(power > 0){
                     cameraOn = !(cameraOn);
@@ -292,12 +345,21 @@
                         console.log(powerlevel);
                         this.scene.bringToTop('camera');
                         this.scene.resume('camera');
+                        gameState.officenoise.pause();
+                        gameState.lighttrigger.pause();
+                        if(rlightOn === true){
+                            rlightSprite.destroy();
+                        }
+                        else if(llightOn === true){
+                            llightSprite.destroy();
+                        }
                     }
                     else {
                         secondcons *= 2;
                         powerlevel -= 1;
                         this.scene.bringToTop('Night1');
                         this.scene.pause('camera');
+                        gameState.officenoise.resume();
                     }
                     if(powerlevel === 1|| powerlevel === 2){
                         gameState.gusage.destroy();
@@ -325,6 +387,9 @@
                         if(AM === 6){
                             gameState.officenoise.setMute(true);
                             gameState.ambient1.setMute(true);
+                            gameState.doormove.setMute(true);
+                            gameState.lighttrigger.setMute(true);
+                            gameState.phonecall.setMute(true);
                             this.scene.stop(`Night${gameState.night}`);
                             this.scene.stop('camera');
                             gameState.night += 1;
