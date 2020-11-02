@@ -188,12 +188,7 @@
                 gameState.camsound.play();
                 camPOS = 8;
                 gameState.camerabg.destroy();
-                if(bonniePOS == 7 && chicaPOS == 7 && freddyPOS == 7){
-                    gameState.camerabg = this.add.sprite(0,0,'CAM7c').setOrigin(0,0).setDepth(0).setScale(10);
-                }
-                else if(chicaPOS == 7 && freddyPOS == 7){
-                    gameState.camerabg = this.add.sprite(0,0,'bonnieCAM7c').setOrigin(0,0).setDepth(0).setScale(10);
-                }
+                gameState.camerabg = this.add.sprite(0,0,'CAM7c').setOrigin(0,0).setDepth(0).setScale(10);
             });
             gameState.CAMS6.on('pointerdown', () => {
                 gameState.static.pause();
@@ -257,7 +252,7 @@
             gameState.bonnieMovement = function(scene){
                 bonniecooldown -= 1;
                 if(bonniecooldown <= 0){
-                    bonniecooldown = 6000;
+                    bonniecooldown = 4500;
                     if(bonniePOS == 7){
                         bonniePOS = 6;
                     }
