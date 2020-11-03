@@ -10,7 +10,7 @@ const config = {
           enableBody: true,
         }
     },
-  scene:[MenuScene,introNight,SIXAM,camera,Night1],
+  scene:[MenuScene,introNight,SIXAM,camera,Night1,gameOver],
     scale: {
         zoom: 0.95
     }

@@ -23,7 +23,7 @@
 
     var camPOS = 1;
 
-    var bonniePOS = 7;  
+    var bonniePOS = 0;  
     var bonniecooldown = 0;
     var chicaPOS = 7;
     var freddyPOS = 7;
@@ -250,6 +250,7 @@
             this.load.audio('cameranoise', 'audio/cameranoise.mp3');
             this.load.audio('ambient1', 'audio/ambient1.mp3');
             this.load.audio('phonecall', 'audio/phonecall1.mp3');
+            this.load.audio('robotscream', 'audio/robotscream.mp3');
         }
         create(){
             bonniecooldown = 5000;
@@ -290,6 +291,7 @@
                         }
                         else{
                             scene.scene.pause('camera');
+                            gameState.robotscream.play();
                             cameraOn = false;
                             if(llightOn == true){
                                 llightSprite.destroy();
@@ -304,9 +306,11 @@
                             scene.time.addEvent({
                                 delay: 1500,
                                 callback: ()=>{
+                                    gameState.robotscream.pause();
                                     scene.scene.stop('Night1');
                                     scene.scene.stop('camera');
-                                    scene.scene.start('MenuScene');
+                                    reset();
+                                    scene.scene.start('gameOver');
                                 },
                                 startAt: 0,
                                 timeScale: 1,
@@ -370,6 +374,7 @@
             gameState.officenoise.play(loopSound);
             gameState.ambient1 = this.sound.add('ambient1');
             gameState.ambient1.play(loopSound2);
+            gameState.robotscream = this.sound.add('robotscream');
             gameState.phonecall = this.sound.add('phonecall');
             gameState.phonecall.play();
             //Right Door
@@ -546,7 +551,7 @@
                         }
                     }
                     gameState.AMtext.destroy();
-                    gameState.AMtext = this.add.text(window.innerWidth - 130, 20, `${AM} AM`, { fontSize: '30px', fill: '#FFFFFF' });
+                    gameState.AMtext = this.add.text(window.innerWidth - 130, 20, `${AM} AM`, { fontSize: '30px', fill: '#FFFFFF' }).setDepth(4);
                 },
                 repeat: 5,
                 startAt: 0,
