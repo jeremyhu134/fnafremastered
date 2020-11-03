@@ -24,7 +24,7 @@
     var camPOS = 1;
 
     var bonniePOS = 7;  
-    var bonniecooldown = 9000;
+    var bonniecooldown = 0;
     var chicaPOS = 7;
     var freddyPOS = 7;
     var foxyPOS = 7;
@@ -233,8 +233,10 @@
             this.load.image('bg','fnafpicture/blackscreen.png');
             this.load.image('Office','fnafpicture/Office.png');
             this.load.spritesheet('ldoor','fnafpicture/ldoor.png',{frameWidth: 120,frameHeight:393});
+            this.load.spritesheet('bonnieJumpscare','fnafpicture/bonnieJumpscare.png',{frameWidth: 240,frameHeight:100});
             this.load.image('rdoor','fnafpicture/rdoor.png');
             this.load.image('llighton','fnafpicture/llighton.png');
+            this.load.image('bonniellighton','fnafpicture/bonniellighton.png');
             this.load.image('button','fnafpicture/button.png');
             this.load.image('mbutton', 'fnafpicture/muteb.png');
             this.load.image('camera','fnafpicture/cambutton.png');
@@ -242,6 +244,7 @@
             this.load.image('yusage','fnafpicture/yellowusage.png');
             this.load.image('rusage','fnafpicture/redusage.png');
             this.load.audio('doormove', 'audio/doormove.mp3');
+            this.load.audio('windowscare', 'audio/windowscare.mp3');
             this.load.audio('lighttrigger', 'audio/lighttrigger.mp3');
             this.load.audio('officenoise', 'audio/officenoise.mp3');
             this.load.audio('cameranoise', 'audio/cameranoise.mp3');
@@ -249,10 +252,11 @@
             this.load.audio('phonecall', 'audio/phonecall1.mp3');
         }
         create(){
+            bonniecooldown = 5000;
             gameState.bonnieMovement = function(scene){
                 bonniecooldown -= 1;
                 if(bonniecooldown <= 0){
-                    bonniecooldown = 4500;
+                    bonniecooldown = 3000;
                     if(bonniePOS == 7){
                         bonniePOS = 6;
                     }
@@ -269,7 +273,45 @@
                         bonniePOS = 1;
                     }
                     else if(bonniePOS == 1){
-                        bonniePOS = 7;
+                        bonniecooldown = 1000;
+                        if(llightOn == true){
+                            llightSprite.destroy();
+                            gameState.lighttrigger.pause();
+                        }
+                        bonniePOS = 0;
+                    }
+                    else if(bonniePOS == 0){
+                        bonniecooldown = 100;
+                        if(ldoorOpen == false){
+                            llightSprite.destroy();
+                            gameState.lighttrigger.pause();
+                            llightOn = false;
+                            bonniePOS = 7;
+                        }
+                        else{
+                            scene.scene.pause('camera');
+                            cameraOn = false;
+                            if(llightOn == true){
+                                llightSprite.destroy();
+                            }
+                            gameState.jumpscaresprite = scene.add.sprite(0,0,'bonnieJumpscare').setOrigin(0,0).setDepth(4).setScale(5);
+                            gameState.jumpscaresprite.anims.play('bonnieJS',true);
+                            gameState.officenoise.pause();
+                            gameState.phonecall.pause();
+                            gameState.lighttrigger.pause();
+                            gameState.ambient1.pause();
+                            gameState.doormove.pause();
+                            scene.time.addEvent({
+                                delay: 1500,
+                                callback: ()=>{
+                                    scene.scene.stop('Night1');
+                                    scene.scene.stop('camera');
+                                    scene.scene.start('MenuScene');
+                                },
+                                startAt: 0,
+                                timeScale: 1,
+                            });
+                        }
                     }
                 }
             }
@@ -293,6 +335,12 @@
                 frameRate: 20,
                 frames:this.anims.generateFrameNames('ldoor',{start: 7,end: 12})
             });
+            this.anims.create({
+                key: 'bonnieJS',
+                frameRate: 20,
+                repeat: -1,
+                frames:this.anims.generateFrameNames('bonnieJumpscare',{start: 0,end: 7})
+            });
             this.scene.launch('camera');
             var loopSound = {
                 loop: true,
@@ -315,6 +363,7 @@
             this.scene.pause('camera');
             //audio
             gameState.doormove = this.sound.add('doormove');
+            gameState.windowscare = this.sound.add('windowscare');
             gameState.lighttrigger = this.sound.add('lighttrigger');
             gameState.cameranoise = this.sound.add('cameranoise');
             gameState.officenoise = this.sound.add('officenoise');
@@ -337,9 +386,9 @@
             gameState.rusage;
             //texts
             this.add.text(10, window.innerHeight-50, 'Usage: ', { fontSize: '20px', fill: '#FFFFFF' });
-            gameState.AMtext = this.add.text(window.innerWidth - 130, 20, `${AM} AM`, { fontSize: '30px', fill: '#FFFFFF' });
-            gameState.nighttext = this.add.text(window.innerWidth - 115, 50, `Night ${gameState.night}`, { fontSize: '15px', fill: '#FFFFFF' });
-            gameState.powertext = this.add.text(10, window.innerHeight-100, `Power left:${power}%`, { fontSize: '20px', fill: '#FFFFFF' });
+            gameState.AMtext = this.add.text(window.innerWidth - 130, 20, `${AM} AM`, { fontSize: '30px', fill: '#FFFFFF' }).setDepth(4);
+            gameState.nighttext = this.add.text(window.innerWidth - 115, 50, `Night ${gameState.night}`, { fontSize: '15px', fill: '#FFFFFF' }).setDepth(4);
+            gameState.powertext = this.add.text(10, window.innerHeight-100, `Power left:${power}%`, { fontSize: '20px', fill: '#FFFFFF' }).setDepth(4);
             //buttons
             gameState.camera = this.add.sprite(window.innerWidth/2-100,window.innerHeight-50,'camera').setInteractive();
             gameState.muteb = this.add.sprite(window.innerWidth-200,window.innerHeight-50,'mbutton').setInteractive();
@@ -382,7 +431,15 @@
                         gameState.lighttrigger.play(loopSound2);
                         secondcons *= 2;
                         powerlevel -= 1;
-                        llightSprite = this.add.image(0,0,'llighton').setOrigin(0,0).setScale(10).setDepth(1);
+                        if(bonniePOS == 0){
+                            if(ldoorOpen == true){
+                                gameState.windowscare.play();
+                            }
+                            llightSprite = this.add.image(0,0,'bonniellighton').setOrigin(0,0).setScale(10).setDepth(1);
+                        }
+                        else {
+                            llightSprite = this.add.image(0,0,'llighton').setOrigin(0,0).setScale(10).setDepth(1);
+                        }
                     }
                 }
             });
