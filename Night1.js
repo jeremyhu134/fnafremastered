@@ -23,7 +23,7 @@
 
     var camPOS = 1;
 
-    var bonniePOS = 0;  
+    var bonniePOS = 7;  
     var bonniecooldown = 0;
     var chicaPOS = 7;
     var freddyPOS = 7;
@@ -214,7 +214,6 @@
             this.scene.bringToTop('Night1');
         }
         update(){
-            console.log('lol');
             if(bonniecooldown <= 10){
                 if(camPOS == bonniePOS){
                     gameState.static.play();
@@ -253,28 +252,56 @@
             this.load.audio('robotscream', 'audio/robotscream.mp3');
         }
         create(){
-            bonniecooldown = 5000;
+            if(gameState.night === 1){
+                bonniecooldown = 9000;
+            }
+            else if(gameState.night === 2){
+                bonniecooldown = 2100;
+            }
             gameState.bonnieMovement = function(scene){
                 bonniecooldown -= 1;
                 if(bonniecooldown <= 0){
-                    bonniecooldown = 3000;
+                    if(gameState.night === 1){
+                       bonniecooldown = Math.ceil(Math.random()*500)+2500; 
+                    }
+                    else if(gameState.night === 2){
+                       bonniecooldown = 2100; 
+                    }
                     if(bonniePOS == 7){
                         bonniePOS = 6;
                     }
                     else if(bonniePOS == 6){
-                        bonniePOS = 5;
+                        gameState.random = Math.ceil(Math.random()*2);
+                        if(gameState.random == 1){
+                            bonniePOS = 5; 
+                        }
+                        else if(gameState.random == 2){
+                            bonniePOS = 2; 
+                        }
                     }
                     else if(bonniePOS == 5){
                         bonniePOS = 2;
                     }
                     else if(bonniePOS == 2){
-                        bonniePOS = 3;
+                        gameState.random = Math.ceil(Math.random()*2);
+                        if(gameState.random == 1){
+                            bonniePOS = 3; 
+                        }
+                        else if(gameState.random == 2){
+                            bonniePOS = 1; 
+                        }
                     }
                     else if(bonniePOS == 3){
-                        bonniePOS = 1;
+                        gameState.random = Math.ceil(Math.random()*2);
+                        if(gameState.random == 1){
+                            bonniePOS = 2; 
+                        }
+                        else if(gameState.random == 2){
+                            bonniePOS = 1; 
+                        }
                     }
                     else if(bonniePOS == 1){
-                        bonniecooldown = 1000;
+                        bonniecooldown = Math.ceil(Math.random()*500)+700;
                         if(llightOn == true){
                             llightSprite.destroy();
                             gameState.lighttrigger.pause();
@@ -282,12 +309,19 @@
                         bonniePOS = 0;
                     }
                     else if(bonniePOS == 0){
-                        bonniecooldown = 100;
                         if(ldoorOpen == false){
-                            llightSprite.destroy();
+                            if(llightOn == true){
+                                llightSprite.destroy();
+                            }
                             gameState.lighttrigger.pause();
                             llightOn = false;
-                            bonniePOS = 7;
+                            gameState.random = Math.ceil(Math.random()*2);
+                            if(gameState.random == 1){
+                                bonniePOS = 7; 
+                            }
+                            else if(gameState.random == 2){
+                                bonniePOS = 6; 
+                            }
                         }
                         else{
                             scene.scene.pause('camera');
