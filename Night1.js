@@ -174,13 +174,13 @@
                 camPOS = 6;
                 gameState.camerabg.destroy();
                 if(bonniePOS == 6 && chicaPOS !== 6 && freddyPOS !== 6){
-                    gameState.camerabg = this.add.sprite(0,0,'bonnieCAM1Bc').setOrigin(0,0).setDepth(0).setScale(10);
+                    gameState.camerabg = this.add.sprite(0,0,'bonnieCAM1Bc').setOrigin(0,0).setDepth(0).setScale(5);
                 }
                 else if(bonniePOS !== 6 && chicaPOS == 6 && freddyPOS !== 6){
                     gameState.camerabg = this.add.sprite(0,0,'chicaCAM1Bc').setOrigin(0,0).setDepth(0).setScale(10);
                 }
                 else if(bonniePOS == 6 && chicaPOS == 6 && freddyPOS !== 6){
-                    gameState.camerabg = this.add.sprite(0,0,'bonniechicaCAM1Bc').setOrigin(0,0).setDepth(0).setScale(10);
+                    gameState.camerabg = this.add.sprite(0,0,'bonniechicaCAM1Bc').setOrigin(0,0).setDepth(0).setScale(5);
                 }
                 else {
                     gameState.camerabg = this.add.sprite(0,0,'CAM1Bc').setOrigin(0,0).setDepth(0).setScale(10);
@@ -265,6 +265,18 @@
                     gameState.camerabg = this.add.sprite(0,0,'static').setOrigin(0,0).setDepth(0).setScale(10);
                 }
             }
+            if(camPOS !== chicaPOS && gameState.camfreeze == true){
+                gameState.static.play();
+                gameState.camerabg.destroy();
+                gameState.camerabg = this.add.sprite(0,0,'static').setOrigin(0,0).setDepth(0).setScale(10);
+                gameState.camerafreeze = false;
+            }
+            else if(camPOS !== bonniePOS && gameState.camfreeze == true){
+                gameState.static.play();
+                gameState.camerabg.destroy();
+                gameState.camerabg = this.add.sprite(0,0,'static').setOrigin(0,0).setDepth(0).setScale(10);
+                gameState.camerafreeze = false;
+            }
         }
     }
 
@@ -298,13 +310,8 @@
             this.load.audio('robotscream', 'audio/robotscream.mp3');
         }
         create(){
-            if(gameState.night === 1){
-                bonniecooldown = 9000;
-                chicacooldown = 15000;
-            }
-            else if(gameState.night === 2){
-                bonniecooldown = 2100;
-            }
+            bonniecooldown = 15000;
+            chicacooldown = 19000;
             gameState.bonnieMovement = function(scene){
                 bonniecooldown -= 1;
                 if(bonniecooldown <= 0){
@@ -373,6 +380,7 @@
                         }
                         else{
                             scene.scene.pause('camera');
+                            scene.scene.bringToTop('Night1');
                             gameState.robotscream.play();
                             cameraOn = false;
                             if(llightOn == true){
@@ -405,7 +413,7 @@
                 chicacooldown -= 1;
                 if(chicacooldown <= 0){
                     if(gameState.night === 1){
-                       chicacooldown = Math.ceil(Math.random()*500)+1700; 
+                       chicacooldown = Math.ceil(Math.random()*500)+2100; 
                     }
                     else if(gameState.night === 2){
                        chicacooldown = 2100; 
@@ -472,6 +480,7 @@
                         }
                         else{
                             scene.scene.pause('camera');
+                            scene.scene.bringToTop('Night1');
                             gameState.robotscream.play();
                             cameraOn = false;
                             if(rlightOn == true){
@@ -697,12 +706,20 @@
                         gameState.lighttrigger.pause();
                         if(rlightOn === true){
                             rlightSprite.destroy();
+                            powerlevel -=1;
                         }
                         else if(llightOn === true){
                             llightSprite.destroy();
+                            powerlevel -=1;
                         }
                     }
                     else {
+                        if(bonniePOS == camPOS){
+                            gameState.camerafreeze = true;
+                        }
+                        else if(bonniePOS == camPOS){
+                            gameState.camerafreeze = true;
+                        }
                         secondcons *= 2;
                         powerlevel -= 1;
                         this.scene.bringToTop('Night1');
