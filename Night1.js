@@ -31,6 +31,8 @@
     var freddycooldown = 0;
     var foxyPOS = 4;
     var foxycooldown = 0;
+
+    var deathRunning = false;
     
     function reset(){
         second = 10;
@@ -48,6 +50,7 @@
         freddyPOS = 7;
         chicaPOS = 7;
         foxyPOS = 4;
+        deathRunning = false;
     }
 
     class camera extends Phaser.Scene {
@@ -363,11 +366,14 @@
                             scene.time.addEvent({
                                 delay: 1500,
                                 callback: ()=>{
-                                    gameState.robotscream.pause();
-                                    scene.scene.stop('Night1');
-                                    scene.scene.stop('camera');
-                                    reset();
-                                    scene.scene.start('gameOver');
+                                    if(deathRunning == false){
+                                        deathRunning = true;
+                                        gameState.robotscream.pause();
+                                        scene.scene.stop('Night1');
+                                        scene.scene.stop('camera');
+                                        reset();
+                                        scene.scene.start('gameOver');
+                                    }
                                 },
                                 startAt: 0,
                                 timeScale: 1,
@@ -463,11 +469,14 @@
                             scene.time.addEvent({
                                 delay: 1500,
                                 callback: ()=>{
-                                    gameState.robotscream.pause();
-                                    scene.scene.stop('Night1');
-                                    scene.scene.stop('camera');
-                                    reset();
-                                    scene.scene.start('gameOver');
+                                    if(deathRunning == false){
+                                        deathRunning = true;
+                                        gameState.robotscream.pause();
+                                        scene.scene.stop('Night1');
+                                        scene.scene.stop('camera');
+                                        reset();
+                                        scene.scene.start('gameOver');
+                                    }
                                 },
                                 startAt: 0,
                                 timeScale: 1,
@@ -510,11 +519,14 @@
                             scene.time.addEvent({
                                 delay: 1500,
                                 callback: ()=>{
-                                    gameState.robotscream.pause();
-                                    scene.scene.stop('Night1');
-                                    scene.scene.stop('camera');
-                                    reset();
-                                    scene.scene.start('gameOver');
+                                    if(deathRunning == false){
+                                        deathRunning = true;
+                                        gameState.robotscream.pause();
+                                        scene.scene.stop('Night1');
+                                        scene.scene.stop('camera');
+                                        reset();
+                                        scene.scene.start('gameOver');
+                                    }
                                 },
                                 startAt: 0,
                                 timeScale: 1,
@@ -783,6 +795,7 @@
                             this.scene.stop(`Night${gameState.night}`);
                             this.scene.stop('camera');
                             gameState.night += 1;
+                            localStorage.setItem("night",gameState.night);
                             reset();
 			                this.scene.start('SIXAM');
                         }
@@ -1066,11 +1079,14 @@ class Night2 extends Phaser.Scene {
                             scene.time.addEvent({
                                 delay: 1500,
                                 callback: ()=>{
-                                    gameState.robotscream.pause();
-                                    scene.scene.stop('Night2');
-                                    scene.scene.stop('camera');
-                                    reset();
-                                    scene.scene.start('gameOver');
+                                    if(deathRunning == false){
+                                        deathRunning = true;
+                                        gameState.robotscream.pause();
+                                        scene.scene.stop('Night2');
+                                        scene.scene.stop('camera');
+                                        reset();
+                                        scene.scene.start('gameOver');
+                                    }
                                 },
                                 startAt: 0,
                                 timeScale: 1,
@@ -1161,11 +1177,14 @@ class Night2 extends Phaser.Scene {
                             scene.time.addEvent({
                                 delay: 1500,
                                 callback: ()=>{
-                                    gameState.robotscream.pause();
-                                    scene.scene.stop('Night2');
-                                    scene.scene.stop('camera');
-                                    reset();
-                                    scene.scene.start('gameOver');
+                                    if(deathRunning == false){
+                                        deathRunning = true;
+                                        gameState.robotscream.pause();
+                                        scene.scene.stop('Night2');
+                                        scene.scene.stop('camera');
+                                        reset();
+                                        scene.scene.start('gameOver');
+                                    }
                                 },
                                 startAt: 0,
                                 timeScale: 1,
@@ -1208,11 +1227,14 @@ class Night2 extends Phaser.Scene {
                             scene.time.addEvent({
                                 delay: 1500,
                                 callback: ()=>{
-                                    gameState.robotscream.pause();
-                                    scene.scene.stop('Night2');
-                                    scene.scene.stop('camera');
-                                    reset();
-                                    scene.scene.start('gameOver');
+                                    if(deathRunning == false){
+                                        deathRunning = true;
+                                        gameState.robotscream.pause();
+                                        scene.scene.stop('Night2');
+                                        scene.scene.stop('camera');
+                                        reset();
+                                        scene.scene.start('gameOver');
+                                    }
                                 },
                                 startAt: 0,
                                 timeScale: 1,
@@ -1480,6 +1502,7 @@ class Night2 extends Phaser.Scene {
                             this.scene.stop(`Night${gameState.night}`);
                             this.scene.stop('camera');
                             gameState.night += 1;
+                            localStorage.setItem("night",gameState.night);
                             reset();
 			                this.scene.start('SIXAM');
                         }
