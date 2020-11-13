@@ -10,12 +10,7 @@ const config = {
           enableBody: true,
         }
     },
-  scene:[MenuScene,introNight,SIXAM,camera,Night1,Night2,gameOver],
-    scale: {
-        zoom: 0.95,
-        mode: Phaser.Scale.FIT,
-        autoCenter: Phaser.Scale.CENTER_BOTH
-    }
+  scene:[MenuScene,introNight,SIXAM,camera,Night1,Night2,gameOver]
 };
 
 const game = new Phaser.Game(config);
