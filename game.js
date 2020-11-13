@@ -1,6 +1,7 @@
 const config = {
   type: Phaser.AUTO,
-  width: 1360,
+  width: window.innerWidth,
+  height: window.innerHeight,
   backgroundColor: "000000",
     physics: {
         default: 'arcade',
