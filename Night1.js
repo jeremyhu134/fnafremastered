@@ -16,8 +16,8 @@
 
     var cameraOn = false;
 
-    var second = 10;
-    var secondcons = 10;
+    var second = 9;
+    var secondcons = 9;
 
     var powerlevel = 1;
 
@@ -58,51 +58,7 @@
             super({ key: 'camera' })
         }
         preload(){
-            this.load.audio('camsound','audio/nightintro.mp3');
-            this.load.audio('static','audio/static.mp3');
-            this.load.audio('run','audio/run.mp3');
-            this.load.image('bg','fnafpicture/blackscreen.png');
-            this.load.image('static','fnafpicture/static.png');
-            this.load.image('CAMSlayout','fnafpicture/CAMSlayout.png');
-            this.load.image('CAM2B','fnafpicture/CAM2B.png');
-            this.load.image('CAM2Bc','fnafpicture/CAM2Bc.png');
-            this.load.image('bonnieCAM2Bc','fnafpicture/bonnieCAM2Bc.png');
-            this.load.image('CAM2A','fnafpicture/CAM2A.png');
-            this.load.image('CAM2Ac','fnafpicture/CAM2Ac.png');
-            this.load.image('bonnieCAM2Ac','fnafpicture/bonnieCAM2Ac.png');
-            this.load.image('CAM3','fnafpicture/CAM3.png');
-            this.load.image('CAM1C','fnafpicture/CAM1C.png');
-            this.load.image('CAM5','fnafpicture/CAM5.png');
-            this.load.image('CAM5c','fnafpicture/CAM5c.png');
-            this.load.image('bonnieCAM5c','fnafpicture/bonnieCAM5c.png');
-            this.load.image('CAM1B','fnafpicture/CAM1B.png');   
-            this.load.image('CAM1Bc','fnafpicture/CAM1Bc.png');
-            this.load.image('bonnieCAM1Bc','fnafpicture/bonnieCAM1Bc.png');
-            this.load.image('chicaCAM1Bc','fnafpicture/chicaCAM1Bc.png');
-            this.load.image('bonniechicaCAM1Bc','fnafpicture/bonniechicaCAM1Bc.png');
-            this.load.image('CAM1A','fnafpicture/CAM1A.png');
-            this.load.image('CAM1Ac','fnafpicture/CAM1Ac.png');
-            this.load.image('bonnieCAM1Ac','fnafpicture/bonnieCAM1Ac.png');
-            this.load.image('chicaCAM1Ac','fnafpicture/chicaCAM1Ac.png');
-            this.load.image('bonniechicaCAM1Ac','fnafpicture/bonniechicaCAM1Ac.png');
-            this.load.image('CAM7','fnafpicture/CAM7.png');
-            this.load.image('CAM7c','fnafpicture/CAM7c.png');
-            this.load.image('chicaCAM7c','fnafpicture/chicaCAM7c.png');
-            this.load.image('CAM6','fnafpicture/CAM6.png');
-            this.load.image('CAM6c','fnafpicture/CAM6c.png');
-            this.load.image('CAM4A','fnafpicture/CAM4A.png');
-            this.load.image('CAM4Ac','fnafpicture/CAM4Ac.png');
-            this.load.image('chicaCAM4Ac','fnafpicture/chicaCAM4Ac.png');
-            this.load.image('CAM4B','fnafpicture/CAM4B.png');
-            this.load.image('CAM4Bc','fnafpicture/CAM4Bc.png');
-            this.load.image('chicaCAM4Bc','fnafpicture/chicaCAM4Bc.png');
-            this.load.image('CAM3c','fnafpicture/CAM3c.png');
-            this.load.image('bonnieCAM3c','fnafpicture/bonnieCAM3c.png');
-            this.load.image('CAM1Cc','fnafpicture/CAM1Cc.png');
-            this.load.image('foxy1CAM1Cc','fnafpicture/foxy1CAM1Cc.png');
-            this.load.image('foxy2CAM1Cc','fnafpicture/foxy2CAM1Cc.png');
-            this.load.image('foxy3CAM1Cc','fnafpicture/foxy3CAM1Cc.png');
-            this.load.spritesheet('foxyCAM2Ac','fnafpicture/foxyCAM2Ac.png',{frameWidth: 120,frameHeight:50});
+            
         }
         create(){
             gameState.camsound = this.sound.add('camsound');
@@ -254,33 +210,12 @@
             super({ key: 'Night1' })
         }
         preload(){
-            this.load.image('bg','fnafpicture/blackscreen.png');
-            this.load.image('Office','fnafpicture/Office.png');
-            this.load.spritesheet('ldoor','fnafpicture/ldoor.png',{frameWidth: 120,frameHeight:393});
-            this.load.spritesheet('bonnieJumpscare','fnafpicture/bonnieJumpscare.png',{frameWidth: 240,frameHeight:100});
-            this.load.spritesheet('chicaJumpscare','fnafpicture/chicaJumpscare.png',{frameWidth: 240,frameHeight:100});
-            this.load.spritesheet('foxyJumpscare','fnafpicture/foxyJumpscare.png',{frameWidth: 180,frameHeight:400});
-            this.load.image('rdoor','fnafpicture/rdoor.png');
-            this.load.image('llighton','fnafpicture/llighton.png');
-            this.load.image('bonniellighton','fnafpicture/bonniellighton.png');
-            this.load.image('chicallighton','fnafpicture/chicallighton.png');
-            this.load.image('button','fnafpicture/button.png');
-            this.load.image('mbutton', 'fnafpicture/muteb.png');
-            this.load.image('camera','fnafpicture/cambutton.png');
-            this.load.image('gusage','fnafpicture/greenusage.png');
-            this.load.image('yusage','fnafpicture/yellowusage.png');
-            this.load.image('rusage','fnafpicture/redusage.png');
-            this.load.audio('doormove', 'audio/doormove.mp3');
-            this.load.audio('windowscare', 'audio/windowscare.mp3');
-            this.load.audio('lighttrigger', 'audio/lighttrigger.mp3');
-            this.load.audio('officenoise', 'audio/officenoise.mp3');
-            this.load.audio('cameranoise', 'audio/cameranoise.mp3');
-            this.load.audio('ambient1', 'audio/ambient1.mp3');
-            this.load.audio('phonecall', 'audio/phonecall1.mp3');
-            this.load.audio('robotscream', 'audio/robotscream.mp3');
-            this.load.audio('knock', 'audio/knock.mp3');
+            
         }
         create(){
+            gameState.gusage = this.add.sprite(10000,10000,'gusage').setOrigin(0,0);
+            gameState.gusage2 = this.add.sprite(10000,10000,'yusage').setOrigin(0,0);
+            gameState.gusage3 = this.add.sprite(10000,10000,'rusage').setOrigin(0,0);
             gameState.foxyChecked = false;
             bonniecooldown = 15000;
             chicacooldown = 19000;
@@ -538,44 +473,7 @@
                         }
                     }
                 }
-            }
-            this.anims.create({
-                key: 'ldoorclose',
-                frameRate: 20,
-                frames:this.anims.generateFrameNames('ldoor',{start: 0,end: 6})
-            });
-            this.anims.create({
-                key: 'ldooropen',
-                frameRate: 20,
-                frames:this.anims.generateFrameNames('ldoor',{start: 7,end: 12})
-            });
-            this.anims.create({
-                key: 'rdoorclose',
-                frameRate: 20,
-                frames:this.anims.generateFrameNames('ldoor',{start: 0,end: 6})
-            });
-            this.anims.create({
-                key: 'rdooropen',
-                frameRate: 20,
-                frames:this.anims.generateFrameNames('ldoor',{start: 7,end: 12})
-            });
-            this.anims.create({
-                key: 'bonnieJS',
-                frameRate: 20,
-                repeat: -1,
-                frames:this.anims.generateFrameNames('bonnieJumpscare',{start: 0,end: 7})
-            });
-            this.anims.create({
-                key: 'chicaJS',
-                frameRate: 20,
-                repeat: -1,
-                frames:this.anims.generateFrameNames('chicaJumpscare',{start: 0,end: 7})
-            });
-            this.anims.create({
-                key: 'foxyJS',
-                frameRate: 20,
-                frames:this.anims.generateFrameNames('foxyJumpscare',{start: 0,end: 9})
-            });
+            }   
             this.scene.launch('camera');
             var loopSound = {
                 loop: true,
@@ -585,29 +483,24 @@
                 loop: true,
                 volume: 1.5
             }
-            gameState.ldoor = this.physics.add.group();
-            gameState.rdoor = this.physics.add.group();
-            gameState.camera = this.physics.add.group();
             //background
             this.add.image(0,0,'bg').setOrigin(0,0).setDepth(0);
             this.add.image(0,0,'Office').setOrigin(0,0).setDepth(2);
             /*this.physics.add.collider(, , function() {
                 
             });*/  
+            
+            gameState.ldoor = this.physics.add.group();
+            gameState.rdoor = this.physics.add.group();
+            gameState.camera = this.physics.add.group();
+            gameState.ldoor = this.physics.add.group();
+            gameState.rdoor = this.physics.add.group();
+            gameState.camera = this.physics.add.group();
             this.add.sprite(100,window.innerHeight-60,'gusage').setOrigin(0,0);
             this.scene.pause('camera');
             //audio
-            gameState.doormove = this.sound.add('doormove');
-            gameState.windowscare = this.sound.add('windowscare');
-            gameState.lighttrigger = this.sound.add('lighttrigger');
-            gameState.cameranoise = this.sound.add('cameranoise');
-            gameState.officenoise = this.sound.add('officenoise');
             gameState.officenoise.play(loopSound);
-            gameState.ambient1 = this.sound.add('ambient1');
             gameState.ambient1.play(loopSound2);
-            gameState.robotscream = this.sound.add('robotscream');
-            gameState.knock = this.sound.add('knock');
-            gameState.phonecall = this.sound.add('phonecall');
             gameState.phonecall.play();
             //Right Door
             rdoorSprite = gameState.rdoor.create(990,63,'ldoor').setOrigin(0,0).setFlipX(true).setDepth(2);
@@ -763,18 +656,7 @@
                         this.scene.pause('camera');
                         gameState.officenoise.resume();
                     }
-                    if(powerlevel === 1|| powerlevel === 2){
-                        gameState.gusage.destroy();
-                        gameState.gusage = this.add.sprite(100,window.innerHeight-60,'gusage').setOrigin(0,0);
-                    } 
-                    else if(powerlevel === 3){
-                        gameState.gusage.destroy();
-                        gameState.gusage = this.add.sprite(100,window.innerHeight-60,'yusage').setOrigin(0,0);
-                    } 
-                    else if(powerlevel === 4){
-                        gameState.gusage.destroy();
-                        gameState.gusage = this.add.sprite(100,window.innerHeight-60,'rusage').setOrigin(0,0);
-                    }
+                    gameState.checkPowerUsage(this);
                 }
             });
             //timer
@@ -787,17 +669,7 @@
                     else {
                         AM += 1;
                         if(AM === 6){
-                            gameState.officenoise.setMute(true);
-                            gameState.ambient1.setMute(true);
-                            gameState.doormove.setMute(true);
-                            gameState.lighttrigger.setMute(true);
-                            gameState.phonecall.setMute(true);
-                            this.scene.stop(`Night${gameState.night}`);
-                            this.scene.stop('camera');
-                            gameState.night += 1;
-                            localStorage.setItem("night",gameState.night);
-                            reset();
-			                this.scene.start('SIXAM');
+                            gameState.win6AM(this);
                         }
                     }
                     gameState.AMtext.destroy();
@@ -818,127 +690,8 @@
                 timeScale: 1,
             });
             this.input.on('pointerup',()=>{
-                if(powerlevel === 1|| powerlevel === 2){
-                    gameState.gusage.destroy();
-                    gameState.gusage = this.add.sprite(100,window.innerHeight-60,'gusage').setOrigin(0,0);
-                } 
-                else if(powerlevel === 3){
-                    gameState.gusage.destroy();
-                    gameState.gusage = this.add.sprite(100,window.innerHeight-60,'yusage').setOrigin(0,0);
-                } 
-                else if(powerlevel === 4){
-                    gameState.gusage.destroy();
-                    gameState.gusage = this.add.sprite(100,window.innerHeight-60,'rusage').setOrigin(0,0);
-                }
+                gameState.checkPowerUsage(this);
             });
-            gameState.checkcam = function(scene){
-                if(camPOS == 1){
-                   if(bonniePOS == 1){
-                        gameState.camerabg = scene.add.sprite(0,0,'bonnieCAM2Bc').setOrigin(0,0).setDepth(0).setScale(10);
-                    }
-                    else if(bonniePOS !== 1){
-                        gameState.camerabg = scene.add.sprite(0,0,'CAM2Bc').setOrigin(0,0).setDepth(0).setScale(10);
-                    } 
-                }
-                if(camPOS == 2){
-                    if(bonniePOS == 2){
-                        gameState.camerabg = scene.add.sprite(0,0,'bonnieCAM2Ac').setOrigin(0,0).setDepth(0).setScale(10);
-                    }
-                    else if (foxyPOS == 1 && gameState.foxyChecked == false){
-                        gameState.foxyChecked = true;
-                        console.log(gameState.foxyChecked);
-                        gameState.camerabg = scene.add.sprite(0,0,'CAM2Ac').setOrigin(0,0).setDepth(0).setScale(10);
-                        gameState.camerabg.anims.play('foxyRun',true);
-                        gameState.run.play();
-                        foxycooldown = 150;
-                    }
-                    else{
-                        gameState.camerabg = scene.add.sprite(0,0,'CAM2Ac').setOrigin(0,0).setDepth(0).setScale(10);
-                    }
-                }
-                if(camPOS == 3){
-                    if(bonniePOS == 3){
-                        gameState.camerabg = scene.add.sprite(0,0,'bonnieCAM3c').setOrigin(0,0).setDepth(0).setScale(10);
-                    }
-                    else if(bonniePOS !== 3){
-                        gameState.camerabg = scene.add.sprite(0,0,'CAM3c').setOrigin(0,0).setDepth(0).setScale(10);
-                    }
-                }
-                if(camPOS == 4){
-                    if(foxyPOS == 3){
-                        gameState.camerabg = scene.add.sprite(0,0,'foxy1CAM1Cc').setOrigin(0,0).setDepth(0).setScale(10);
-                    }
-                    else if(foxyPOS == 2){
-                        gameState.camerabg = scene.add.sprite(0,0,'foxy2CAM1Cc').setOrigin(0,0).setDepth(0).setScale(10);
-                    }
-                    else if(foxyPOS == 1){
-                        gameState.camerabg = scene.add.sprite(0,0,'foxy3CAM1Cc').setOrigin(0,0).setDepth(0).setScale(10);
-                    }
-                    else if(foxyPOS == 4){
-                        gameState.camerabg = scene.add.sprite(0,0,'CAM1Cc').setOrigin(0,0).setDepth(0).setScale(10);
-                    }
-                }
-                if(camPOS == 5){
-                    if(bonniePOS == 5){
-                        gameState.camerabg = scene.add.sprite(0,0,'bonnieCAM5c').setOrigin(0,0).setDepth(0).setScale(10);
-                    }
-                    else if(bonniePOS !== 5){
-                        gameState.camerabg = scene.add.sprite(0,0,'CAM5c').setOrigin(0,0).setDepth(0).setScale(10);
-                    }
-                }
-                if(camPOS == 6){
-                    if(bonniePOS == 6 && chicaPOS !== 6 && freddyPOS !== 6){
-                        gameState.camerabg = scene.add.sprite(0,0,'bonnieCAM1Bc').setOrigin(0,0).setDepth(0).setScale(5);
-                    }
-                    else if(bonniePOS !== 6 && chicaPOS == 6 && freddyPOS !== 6){
-                        gameState.camerabg = scene.add.sprite(0,0,'chicaCAM1Bc').setOrigin(0,0).setDepth(0).setScale(10);
-                    }
-                    else if(bonniePOS == 6 && chicaPOS == 6 && freddyPOS !== 6){
-                        gameState.camerabg = scene.add.sprite(0,0,'bonniechicaCAM1Bc').setOrigin(0,0).setDepth(0).setScale(5);
-                    }
-                    else if(bonniePOS !== 6 && chicaPOS !== 6 && freddyPOS !== 6){
-                        gameState.camerabg = scene.add.sprite(0,0,'CAM1Bc').setOrigin(0,0).setDepth(0).setScale(10);
-                    }
-                }
-                if(camPOS == 7){
-                    if(bonniePOS !== 7 && chicaPOS == 7 && freddyPOS == 7){
-                        gameState.camerabg = scene.add.sprite(0,0,'bonnieCAM1Ac').setOrigin(0,0).setDepth(0).setScale(10);
-                    }
-                    else if(bonniePOS == 7 && chicaPOS !== 7 && freddyPOS == 7){
-                        gameState.camerabg = scene.add.sprite(0,0,'chicaCAM1Ac').setOrigin(0,0).setDepth(0).setScale(10);
-                    }
-                    else if(bonniePOS !== 7 && chicaPOS !== 7 && freddyPOS == 7){
-                        gameState.camerabg = scene.add.sprite(0,0,'bonniechicaCAM1Ac').setOrigin(0,0).setDepth(0).setScale(10);
-                    }
-                    else if(bonniePOS == 7 && chicaPOS == 7 && freddyPOS == 7){
-                        gameState.camerabg = scene.add.sprite(0,0,'CAM1Ac').setOrigin(0,0).setDepth(0).setScale(10);
-                    }
-                }
-                if(camPOS == 8){
-                    if(chicaPOS == 8){
-                        gameState.camerabg = scene.add.sprite(0,0,'chicaCAM7c').setOrigin(0,0).setDepth(0).setScale(10);
-                    }
-                    else if(chicaPOS !== 8){
-                        gameState.camerabg = scene.add.sprite(0,0,'CAM7c').setOrigin(0,0).setDepth(0).setScale(10);
-                    }
-                }
-                if(camPOS == 10){
-                    if(chicaPOS == 10){
-                        gameState.camerabg = scene.add.sprite(0,0,'chicaCAM4Ac').setOrigin(0,0).setDepth(0).setScale(10);
-                    }
-                    else if(chicaPOS !== 10){
-                        gameState.camerabg = scene.add.sprite(0,0,'CAM4Ac').setOrigin(0,0).setDepth(0).setScale(10);
-                    }
-                }
-                if(camPOS == 11){
-                    if(chicaPOS == 11){
-                        gameState.camerabg = scene.add.sprite(0,0,'chicaCAM4Bc').setOrigin(0,0).setDepth(0).setScale(10);
-                    }
-                    else if(chicaPOS !== 11){
-                        gameState.camerabg = scene.add.sprite(0,0,'CAM4Bc').setOrigin(0,0).setDepth(0).setScale(10);
-                    }
-                }
-            }
         }
 
         update(){
@@ -968,33 +721,12 @@ class Night2 extends Phaser.Scene {
             super({ key: 'Night2' })
         }
         preload(){
-            this.load.image('bg','fnafpicture/blackscreen.png');
-            this.load.image('Office','fnafpicture/Office.png');
-            this.load.spritesheet('ldoor','fnafpicture/ldoor.png',{frameWidth: 120,frameHeight:393});
-            this.load.spritesheet('bonnieJumpscare','fnafpicture/bonnieJumpscare.png',{frameWidth: 240,frameHeight:100});
-            this.load.spritesheet('chicaJumpscare','fnafpicture/chicaJumpscare.png',{frameWidth: 240,frameHeight:100});
-            this.load.spritesheet('foxyJumpscare','fnafpicture/foxyJumpscare.png',{frameWidth: 180,frameHeight:400});
-            this.load.image('rdoor','fnafpicture/rdoor.png');
-            this.load.image('llighton','fnafpicture/llighton.png');
-            this.load.image('bonniellighton','fnafpicture/bonniellighton.png');
-            this.load.image('chicallighton','fnafpicture/chicallighton.png');
-            this.load.image('button','fnafpicture/button.png');
-            this.load.image('mbutton', 'fnafpicture/muteb.png');
-            this.load.image('camera','fnafpicture/cambutton.png');
-            this.load.image('gusage','fnafpicture/greenusage.png');
-            this.load.image('yusage','fnafpicture/yellowusage.png');
-            this.load.image('rusage','fnafpicture/redusage.png');
-            this.load.audio('doormove', 'audio/doormove.mp3');
-            this.load.audio('windowscare', 'audio/windowscare.mp3');
-            this.load.audio('lighttrigger', 'audio/lighttrigger.mp3');
-            this.load.audio('officenoise', 'audio/officenoise.mp3');
-            this.load.audio('cameranoise', 'audio/cameranoise.mp3');
-            this.load.audio('ambient1', 'audio/ambient1.mp3');
-            this.load.audio('phonecall', 'audio/phonecall2.mp3');
-            this.load.audio('robotscream', 'audio/robotscream.mp3');
-            this.load.audio('knock', 'audio/knock.mp3');
+            
         }
         create(){
+            gameState.gusage = this.add.sprite(10000,10000,'gusage').setOrigin(0,0);
+            gameState.gusage2 = this.add.sprite(10000,10000,'yusage').setOrigin(0,0);
+            gameState.gusage3 = this.add.sprite(10000,10000,'rusage').setOrigin(0,0);
             bonniePOS = 3;
             gameState.foxyChecked = false;
             bonniecooldown = Math.ceil(Math.random()*500)+3000;
@@ -1247,43 +979,6 @@ class Night2 extends Phaser.Scene {
                     }
                 }
             }
-            this.anims.create({
-                key: 'ldoorclose',
-                frameRate: 20,
-                frames:this.anims.generateFrameNames('ldoor',{start: 0,end: 6})
-            });
-            this.anims.create({
-                key: 'ldooropen',
-                frameRate: 20,
-                frames:this.anims.generateFrameNames('ldoor',{start: 7,end: 12})
-            });
-            this.anims.create({
-                key: 'rdoorclose',
-                frameRate: 20,
-                frames:this.anims.generateFrameNames('ldoor',{start: 0,end: 6})
-            });
-            this.anims.create({
-                key: 'rdooropen',
-                frameRate: 20,
-                frames:this.anims.generateFrameNames('ldoor',{start: 7,end: 12})
-            });
-            this.anims.create({
-                key: 'bonnieJS',
-                frameRate: 20,
-                repeat: -1,
-                frames:this.anims.generateFrameNames('bonnieJumpscare',{start: 0,end: 7})
-            });
-            this.anims.create({
-                key: 'chicaJS',
-                frameRate: 20,
-                repeat: -1,
-                frames:this.anims.generateFrameNames('chicaJumpscare',{start: 0,end: 7})
-            });
-            this.anims.create({
-                key: 'foxyJS',
-                frameRate: 20,
-                frames:this.anims.generateFrameNames('foxyJumpscare',{start: 0,end: 9})
-            });
             this.scene.launch('camera');
             var loopSound = {
                 loop: true,
@@ -1293,9 +988,6 @@ class Night2 extends Phaser.Scene {
                 loop: true,
                 volume: 1.5
             }
-            gameState.ldoor = this.physics.add.group();
-            gameState.rdoor = this.physics.add.group();
-            gameState.camera = this.physics.add.group();
             //background
             this.add.image(0,0,'bg').setOrigin(0,0).setDepth(0);
             this.add.image(0,0,'Office').setOrigin(0,0).setDepth(2);
@@ -1305,17 +997,8 @@ class Night2 extends Phaser.Scene {
             this.add.sprite(100,window.innerHeight-60,'gusage').setOrigin(0,0);
             this.scene.pause('camera');
             //audio
-            gameState.doormove = this.sound.add('doormove');
-            gameState.windowscare = this.sound.add('windowscare');
-            gameState.lighttrigger = this.sound.add('lighttrigger');
-            gameState.cameranoise = this.sound.add('cameranoise');
-            gameState.officenoise = this.sound.add('officenoise');
             gameState.officenoise.play(loopSound);
-            gameState.ambient1 = this.sound.add('ambient1');
             gameState.ambient1.play(loopSound2);
-            gameState.robotscream = this.sound.add('robotscream');
-            gameState.knock = this.sound.add('knock');
-            gameState.phonecall = this.sound.add('phonecall');
             gameState.phonecall.play();
             //Right Door
             rdoorSprite = gameState.rdoor.create(990,63,'ldoor').setOrigin(0,0).setFlipX(true).setDepth(2);
@@ -1470,18 +1153,7 @@ class Night2 extends Phaser.Scene {
                         this.scene.pause('camera');
                         gameState.officenoise.resume();
                     }
-                    if(powerlevel === 1|| powerlevel === 2){
-                        gameState.gusage.destroy();
-                        gameState.gusage = this.add.sprite(100,window.innerHeight-60,'gusage').setOrigin(0,0);
-                    } 
-                    else if(powerlevel === 3){
-                        gameState.gusage.destroy();
-                        gameState.gusage = this.add.sprite(100,window.innerHeight-60,'yusage').setOrigin(0,0);
-                    } 
-                    else if(powerlevel === 4){
-                        gameState.gusage.destroy();
-                        gameState.gusage = this.add.sprite(100,window.innerHeight-60,'rusage').setOrigin(0,0);
-                    }
+                    gameState.checkPowerUsage(this);
                 }
             });
             //timer
@@ -1494,17 +1166,7 @@ class Night2 extends Phaser.Scene {
                     else {
                         AM += 1;
                         if(AM === 6){
-                            gameState.officenoise.setMute(true);
-                            gameState.ambient1.setMute(true);
-                            gameState.doormove.setMute(true);
-                            gameState.lighttrigger.setMute(true);
-                            gameState.phonecall.setMute(true);
-                            this.scene.stop(`Night${gameState.night}`);
-                            this.scene.stop('camera');
-                            gameState.night += 1;
-                            localStorage.setItem("night",gameState.night);
-                            reset();
-			                this.scene.start('SIXAM');
+                            gameState.win6AM(this);
                         }
                     }
                     gameState.AMtext.destroy();
@@ -1525,127 +1187,8 @@ class Night2 extends Phaser.Scene {
                 timeScale: 1,
             });
             this.input.on('pointerup',()=>{
-                if(powerlevel === 1|| powerlevel === 2){
-                    gameState.gusage.destroy();
-                    gameState.gusage = this.add.sprite(100,window.innerHeight-60,'gusage').setOrigin(0,0);
-                } 
-                else if(powerlevel === 3){
-                    gameState.gusage.destroy();
-                    gameState.gusage = this.add.sprite(100,window.innerHeight-60,'yusage').setOrigin(0,0);
-                } 
-                else if(powerlevel === 4){
-                    gameState.gusage.destroy();
-                    gameState.gusage = this.add.sprite(100,window.innerHeight-60,'rusage').setOrigin(0,0);
-                }
+                gameState.checkPowerUsage(this);
             });
-            gameState.checkcam = function(scene){
-                if(camPOS == 1){
-                   if(bonniePOS == 1){
-                        gameState.camerabg = scene.add.sprite(0,0,'bonnieCAM2Bc').setOrigin(0,0).setDepth(0).setScale(10);
-                    }
-                    else if(bonniePOS !== 1){
-                        gameState.camerabg = scene.add.sprite(0,0,'CAM2Bc').setOrigin(0,0).setDepth(0).setScale(10);
-                    } 
-                }
-                if(camPOS == 2){
-                    if(bonniePOS == 2){
-                        gameState.camerabg = scene.add.sprite(0,0,'bonnieCAM2Ac').setOrigin(0,0).setDepth(0).setScale(10);
-                    }
-                    else if (foxyPOS == 1 && gameState.foxyChecked == false){
-                        gameState.foxyChecked = true;
-                        console.log(gameState.foxyChecked);
-                        gameState.camerabg = scene.add.sprite(0,0,'CAM2Ac').setOrigin(0,0).setDepth(0).setScale(10);
-                        gameState.camerabg.anims.play('foxyRun',true);
-                        gameState.run.play();
-                        foxycooldown = 150;
-                    }
-                    else{
-                        gameState.camerabg = scene.add.sprite(0,0,'CAM2Ac').setOrigin(0,0).setDepth(0).setScale(10);
-                    }
-                }
-                if(camPOS == 3){
-                    if(bonniePOS == 3){
-                        gameState.camerabg = scene.add.sprite(0,0,'bonnieCAM3c').setOrigin(0,0).setDepth(0).setScale(10);
-                    }
-                    else if(bonniePOS !== 3){
-                        gameState.camerabg = scene.add.sprite(0,0,'CAM3c').setOrigin(0,0).setDepth(0).setScale(10);
-                    }
-                }
-                if(camPOS == 4){
-                    if(foxyPOS == 3){
-                        gameState.camerabg = scene.add.sprite(0,0,'foxy1CAM1Cc').setOrigin(0,0).setDepth(0).setScale(10);
-                    }
-                    else if(foxyPOS == 2){
-                        gameState.camerabg = scene.add.sprite(0,0,'foxy2CAM1Cc').setOrigin(0,0).setDepth(0).setScale(10);
-                    }
-                    else if(foxyPOS == 1){
-                        gameState.camerabg = scene.add.sprite(0,0,'foxy3CAM1Cc').setOrigin(0,0).setDepth(0).setScale(10);
-                    }
-                    else if(foxyPOS == 4){
-                        gameState.camerabg = scene.add.sprite(0,0,'CAM1Cc').setOrigin(0,0).setDepth(0).setScale(10);
-                    }
-                }
-                if(camPOS == 5){
-                    if(bonniePOS == 5){
-                        gameState.camerabg = scene.add.sprite(0,0,'bonnieCAM5c').setOrigin(0,0).setDepth(0).setScale(10);
-                    }
-                    else if(bonniePOS !== 5){
-                        gameState.camerabg = scene.add.sprite(0,0,'CAM5c').setOrigin(0,0).setDepth(0).setScale(10);
-                    }
-                }
-                if(camPOS == 6){
-                    if(bonniePOS == 6 && chicaPOS !== 6 && freddyPOS !== 6){
-                        gameState.camerabg = scene.add.sprite(0,0,'bonnieCAM1Bc').setOrigin(0,0).setDepth(0).setScale(5);
-                    }
-                    else if(bonniePOS !== 6 && chicaPOS == 6 && freddyPOS !== 6){
-                        gameState.camerabg = scene.add.sprite(0,0,'chicaCAM1Bc').setOrigin(0,0).setDepth(0).setScale(10);
-                    }
-                    else if(bonniePOS == 6 && chicaPOS == 6 && freddyPOS !== 6){
-                        gameState.camerabg = scene.add.sprite(0,0,'bonniechicaCAM1Bc').setOrigin(0,0).setDepth(0).setScale(5);
-                    }
-                    else if(bonniePOS !== 6 && chicaPOS !== 6 && freddyPOS !== 6){
-                        gameState.camerabg = scene.add.sprite(0,0,'CAM1Bc').setOrigin(0,0).setDepth(0).setScale(10);
-                    }
-                }
-                if(camPOS == 7){
-                    if(bonniePOS !== 7 && chicaPOS == 7 && freddyPOS == 7){
-                        gameState.camerabg = scene.add.sprite(0,0,'bonnieCAM1Ac').setOrigin(0,0).setDepth(0).setScale(10);
-                    }
-                    else if(bonniePOS == 7 && chicaPOS !== 7 && freddyPOS == 7){
-                        gameState.camerabg = scene.add.sprite(0,0,'chicaCAM1Ac').setOrigin(0,0).setDepth(0).setScale(10);
-                    }
-                    else if(bonniePOS !== 7 && chicaPOS !== 7 && freddyPOS == 7){
-                        gameState.camerabg = scene.add.sprite(0,0,'bonniechicaCAM1Ac').setOrigin(0,0).setDepth(0).setScale(10);
-                    }
-                    else if(bonniePOS == 7 && chicaPOS == 7 && freddyPOS == 7){
-                        gameState.camerabg = scene.add.sprite(0,0,'CAM1Ac').setOrigin(0,0).setDepth(0).setScale(10);
-                    }
-                }
-                if(camPOS == 8){
-                    if(chicaPOS == 8){
-                        gameState.camerabg = scene.add.sprite(0,0,'chicaCAM7c').setOrigin(0,0).setDepth(0).setScale(10);
-                    }
-                    else if(chicaPOS !== 8){
-                        gameState.camerabg = scene.add.sprite(0,0,'CAM7c').setOrigin(0,0).setDepth(0).setScale(10);
-                    }
-                }
-                if(camPOS == 10){
-                    if(chicaPOS == 10){
-                        gameState.camerabg = scene.add.sprite(0,0,'chicaCAM4Ac').setOrigin(0,0).setDepth(0).setScale(10);
-                    }
-                    else if(chicaPOS !== 10){
-                        gameState.camerabg = scene.add.sprite(0,0,'CAM4Ac').setOrigin(0,0).setDepth(0).setScale(10);
-                    }
-                }
-                if(camPOS == 11){
-                    if(chicaPOS == 11){
-                        gameState.camerabg = scene.add.sprite(0,0,'chicaCAM4Bc').setOrigin(0,0).setDepth(0).setScale(10);
-                    }
-                    else if(chicaPOS !== 11){
-                        gameState.camerabg = scene.add.sprite(0,0,'CAM4Bc').setOrigin(0,0).setDepth(0).setScale(10);
-                    }
-                }
-            }
         }
 
         update(){
