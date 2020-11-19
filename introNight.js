@@ -6,6 +6,7 @@ class introNight extends Phaser.Scene {
         this.load.audio('intro','audio/nightintro.mp3');
         this.load.image('bg','fnafpicture/blackscreen.png');
         this.load.image('Office','fnafpicture/Office.png');
+        this.load.image('darkOffice','fnafpicture/darkOffice.png');
         this.load.spritesheet('ldoor','fnafpicture/ldoor.png',{frameWidth: 120,frameHeight:393});
         this.load.spritesheet('bonnieJumpscare','fnafpicture/bonnieJumpscare.png',{frameWidth: 240,frameHeight:100});
         this.load.spritesheet('chicaJumpscare','fnafpicture/chicaJumpscare.png',{frameWidth: 240,frameHeight:100});
@@ -31,6 +32,7 @@ class introNight extends Phaser.Scene {
         this.load.audio('robotscream', 'audio/robotscream.mp3');
         this.load.audio('knock', 'audio/knock.mp3');
         this.load.audio('camsound','audio/nightintro.mp3');
+        this.load.audio('powerDown','audio/powerDown.mp3');
         //cam pictures
         this.load.audio('static','audio/static.mp3');
         this.load.audio('run','audio/run.mp3');
@@ -237,22 +239,60 @@ class introNight extends Phaser.Scene {
                     }
                 }
             }
+        gameState.powerdead = function (scene){
+            if(gameState.powerDown == true){
+                if(cameraOn == true){
+                    scene.scene.bringToTop(`Night${gameState.night}`);
+                    scene.scene.pause('camera');
+                }
+                gameState.officenoise.resume();
+                gameState.powertext.destroy();
+                gameState.gusage.x = 10000;
+                gameState.gusage.y = 10000;
+                gameState.gusage2.x = 10000;
+                gameState.gusage2.y = 10000;
+                gameState.gusage3.x = 10000;
+                gameState.gusage3.y = 10000;
+                gameState.officenoise.pause();
+                gameState.lighttrigger.pause();
+                gameState.phonecall.pause();
+                gameState.phonecall2.pause();
+                gameState.llightButton.destroy();
+                gameState.rlightButton.destroy();
+                gameState.ldoorButton.destroy();
+                gameState.rdoorButton.destroy();
+                gameState.camera.destroy();
+                if(ldoorOpen === false){
+                    ldoorSprite.anims.play('ldooropen',true);
+                    gameState.doormove.play();
+                }
+                if(rdoorOpen === false){
+                    rdoorSprite.anims.play('rdooropen',true);
+                    gameState.doormove.play();
+                }
+                gameState.powerDown = false;
+                gameState.AMtext.destroy();
+                gameState.ambient1.pause();
+                gameState.powerdied.play();
+                gameState.bg = scene.add.image(0,0,'darkOffice').setOrigin(0,0).setDepth(2);
+            }
+        }
         
         this.anims.create({
-                key: 'ldoorclose',
-                frameRate: 20,
-                frames:this.anims.generateFrameNames('ldoor',{start: 0,end: 6})
-            });
+            key: 'ldoorclose',
+            frameRate: 20,
+            frames:this.anims.generateFrameNames('ldoor',{start: 0,end: 6})
+        });
         this.anims.create({
             key: 'ldooropen',
             frameRate: 20,
             frames:this.anims.generateFrameNames('ldoor',{start: 7,end: 12})
-});
+        });
         this.anims.create({
             key: 'rdoorclose',
             frameRate: 20,
             frames:this.anims.generateFrameNames('ldoor',{start: 0,end: 6})
-});
+        });
         this.anims.create({
             key: 'rdooropen',
             frameRate: 20,
@@ -263,18 +303,18 @@ class introNight extends Phaser.Scene {
             frameRate: 20,
             repeat: -1,
             frames:this.anims.generateFrameNames('bonnieJumpscare',{start: 0,end: 7})
-});
+        });
         this.anims.create({
             key: 'chicaJS',
             frameRate: 20,
             repeat: -1,
             frames:this.anims.generateFrameNames('chicaJumpscare',{start: 0,end: 7})
-});
+        });
         this.anims.create({
             key: 'foxyJS',
             frameRate: 20,
             frames:this.anims.generateFrameNames('foxyJumpscare',{start: 0,end: 9})
-});
+        });
         
         gameState.doormove = this.sound.add('doormove');
         gameState.windowscare = this.sound.add('windowscare');
@@ -284,6 +324,7 @@ class introNight extends Phaser.Scene {
         gameState.ambient1 = this.sound.add('ambient1');
         gameState.robotscream = this.sound.add('robotscream');
         gameState.knock = this.sound.add('knock');
+        gameState.powerdied = this.sound.add('powerDown');
         gameState.phonecall = this.sound.add('phonecall1');
         gameState.phonecall2 = this.sound.add('phonecall2');
 	}

@@ -213,6 +213,7 @@
             
         }
         create(){
+            gameState.powerDown = true;
             gameState.gusage = this.add.sprite(10000,10000,'gusage').setOrigin(0,0);
             gameState.gusage2 = this.add.sprite(10000,10000,'yusage').setOrigin(0,0);
             gameState.gusage3 = this.add.sprite(10000,10000,'rusage').setOrigin(0,0);
@@ -485,14 +486,10 @@
             }
             //background
             this.add.image(0,0,'bg').setOrigin(0,0).setDepth(0);
-            this.add.image(0,0,'Office').setOrigin(0,0).setDepth(2);
+            gameState.bg = this.add.image(0,0,'Office').setOrigin(0,0).setDepth(2);
             /*this.physics.add.collider(, , function() {
                 
             });*/  
-            
-            gameState.ldoor = this.physics.add.group();
-            gameState.rdoor = this.physics.add.group();
-            gameState.camera = this.physics.add.group();
             gameState.ldoor = this.physics.add.group();
             gameState.rdoor = this.physics.add.group();
             gameState.camera = this.physics.add.group();
@@ -707,7 +704,7 @@
                }
             }
             else {
-                
+                gameState.powerdead(this);
             }
         }
     }
@@ -724,6 +721,7 @@ class Night2 extends Phaser.Scene {
             
         }
         create(){
+            gameState.powerDown = true;
             gameState.gusage = this.add.sprite(10000,10000,'gusage').setOrigin(0,0);
             gameState.gusage2 = this.add.sprite(10000,10000,'yusage').setOrigin(0,0);
             gameState.gusage3 = this.add.sprite(10000,10000,'rusage').setOrigin(0,0);
@@ -990,16 +988,19 @@ class Night2 extends Phaser.Scene {
             }
             //background
             this.add.image(0,0,'bg').setOrigin(0,0).setDepth(0);
-            this.add.image(0,0,'Office').setOrigin(0,0).setDepth(2);
+            gameState.bg = this.add.image(0,0,'Office').setOrigin(0,0).setDepth(2);
             /*this.physics.add.collider(, , function() {
                 
             });*/  
+            gameState.ldoor = this.physics.add.group();
+            gameState.rdoor = this.physics.add.group();
+            gameState.camera = this.physics.add.group();
             this.add.sprite(100,window.innerHeight-60,'gusage').setOrigin(0,0);
             this.scene.pause('camera');
             //audio
             gameState.officenoise.play(loopSound);
             gameState.ambient1.play(loopSound2);
-            gameState.phonecall.play();
+            gameState.phonecall2.play();
             //Right Door
             rdoorSprite = gameState.rdoor.create(990,63,'ldoor').setOrigin(0,0).setFlipX(true).setDepth(2);
             gameState.ldoorButton = this.add.sprite(20,150,'button').setOrigin(0,0).setInteractive().setDepth(2);
@@ -1204,7 +1205,7 @@ class Night2 extends Phaser.Scene {
                }
             }
             else {
-                
+                gameState.powerdead(this);
             }
         }
     }
