@@ -10,7 +10,7 @@ const config = {
           enableBody: true,
         }
     },
-  scene:[MenuScene,introNight,SIXAM,camera,Night1,Night2,gameOver],
+  scene:[MenuScene,introNight,SIXAM,camera,Night1,Night2,Night3,Night4,Night5,gameOver],
     scale: {
         zoom: 0.95,
         mode: Phaser.Scale.FIT,
