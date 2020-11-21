@@ -350,7 +350,7 @@ class introNight extends Phaser.Scene {
                     ldoorOpen = !(ldoorOpen);
                     if(ldoorOpen === false){
                         secondcons /= 2;
-                        second /= 2;
+                        second -= 1;
                         powerlevel += 1;
                         ldoorSprite.anims.play('ldoorclose',true);
                     }
@@ -367,19 +367,19 @@ class introNight extends Phaser.Scene {
                     if(rlightOn === true){
                         rlightOn = false;
                         rlightSprite.destroy();
-                        secondcons /= 2;
+                        secondcons *= 2;
                         powerlevel -= 1;
                     }
                     if(llightOn === false){
                         gameState.lighttrigger.pause();
-                        secondcons /= 2;
+                        secondcons *= 2;
                         powerlevel -= 1;
                         llightSprite.destroy();
                     }
                     else {
                         gameState.lighttrigger.play(gameState.loopSound2);
-                        secondcons *= 2;
-                        second /= 2;
+                        secondcons /= 2;
+                        second -= 1;
                         powerlevel += 1;
                         if(bonniePOS == 0){
                             if(ldoorOpen == true){
@@ -400,7 +400,7 @@ class introNight extends Phaser.Scene {
                     if(rdoorOpen === false){
                         secondcons /= 2;
                         powerlevel += 1;
-                        second /= 2;
+                        second -= 1;
                         rdoorSprite.anims.play('rdoorclose',true);
                     }
                     else {
@@ -416,19 +416,19 @@ class introNight extends Phaser.Scene {
                     if(llightOn === true){
                         llightOn = false;
                         llightSprite.destroy();
-                        secondcons /= 2;
+                        secondcons *= 2;
                         powerlevel -= 1;
                     }
                     if(rlightOn === false){
                         gameState.lighttrigger.pause();
-                        secondcons /= 2;
+                        secondcons *= 2;
                         powerlevel -= 1;
                         rlightSprite.destroy();
                     }
                     else {
-                        second /= 2;
                         gameState.lighttrigger.play(gameState.loopSound2);
-                        secondcons *= 2;
+                        secondcons /= 2;
+                        second -= 1;
                         powerlevel += 1;
                         if(chicaPOS == 0){
                             if(rdoorOpen == true){
