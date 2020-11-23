@@ -4,7 +4,7 @@
     var rdoorSprite;
     var rlightSprite;
 
-    var power = 100;
+    var power = 1;
 
     var AM = 12;
 
@@ -53,7 +53,7 @@
         deathRunning = false;
     }
 
-    class camera extends Phaser.Scene {
+class camera extends Phaser.Scene {
         constructor() {
             super({ key: 'camera' })
         }
@@ -236,7 +236,11 @@
         }
     }
 
-    class Night1 extends Phaser.Scene {
+
+
+
+
+class Night1 extends Phaser.Scene {
         constructor() {
             super({ key: 'Night1' })
         }
@@ -252,7 +256,8 @@
             gameState.foxyChecked = false;
             bonniecooldown = 15000;
             chicacooldown = Math.ceil(Math.random()*4000)+15000;
-            foxycooldown = 100101010;
+            freddycooldown = 1000000;
+            foxycooldown = 1000000;
             this.scene.launch('camera');
             //background
             this.add.image(0,0,'bg').setOrigin(0,0).setDepth(0);
@@ -329,15 +334,15 @@
         }
 
         update(){
-            gameState.bonnieMovement(this);
-            gameState.chicaMovement(this);
             if(power > 0){
-               if(second <= 0){
+                gameState.bonnieMovement(this);
+                gameState.chicaMovement(this);
+                if(second <= 0){
                    second = secondcons; 
                    power -= 1;
                    gameState.powertext.destroy();
                    gameState.powertext = this.add.text(10, window.innerHeight-100, `Power left:${power}%`, { fontSize: '20px', fill: '#FFFFFF' });
-               }
+                }
             }
             else {
                 gameState.powerdead(this);
@@ -366,6 +371,7 @@ class Night2 extends Phaser.Scene {
             gameState.foxyChecked = false;
             bonniecooldown = Math.ceil(Math.random()*500)+3000;
             chicacooldown = Math.ceil(Math.random()*1500)+9000;
+            freddycooldown = 1000000;
             foxycooldown = Math.ceil(Math.random()*3000)+13000;
             this.scene.launch('camera');
             //background
@@ -444,22 +450,23 @@ class Night2 extends Phaser.Scene {
         }
 
         update(){
-            gameState.bonnieMovement(this);
-            gameState.chicaMovement(this);
-            gameState.foxyMovement(this);
             if(power > 0){
-               if(second <= 0){
+                gameState.bonnieMovement(this);
+                gameState.chicaMovement(this);
+                gameState.foxyMovement(this);
+                if(second <= 0){
                    second = secondcons; 
                    power -= 1;
                    gameState.powertext.destroy();
                    gameState.powertext = this.add.text(10, window.innerHeight-100, `Power left:${power}%`, { fontSize: '20px', fill: '#FFFFFF' });
-               }
+                }
             }
             else {
                 gameState.powerdead(this);
             }
         }
     }
+
 
 
 
@@ -480,6 +487,7 @@ class Night3 extends Phaser.Scene {
             gameState.foxyChecked = false;
             bonniecooldown = Math.ceil(Math.random()*500)+1500;
             chicacooldown = Math.ceil(Math.random()*1500)+2500;
+            freddycooldown = 1000000;
             foxycooldown = Math.ceil(Math.random()*3000)+5000;
             freddycooldown = Math.ceil(Math.random()*3000)+20000;
             this.scene.launch('camera');
@@ -559,25 +567,23 @@ class Night3 extends Phaser.Scene {
         }
 
         update(){
-            gameState.bonnieMovement(this);
-            gameState.chicaMovement(this);
-            gameState.foxyMovement(this);
-            gameState.freddyLaugh(this);
             if(power > 0){
-               if(second <= 0){
+                gameState.bonnieMovement(this);
+                gameState.chicaMovement(this);
+                gameState.foxyMovement(this);
+                gameState.freddyLaugh(this);
+                if(second <= 0){
                    second = secondcons; 
                    power -= 1;
                    gameState.powertext.destroy();
                    gameState.powertext = this.add.text(10, window.innerHeight-100, `Power left:${power}%`, { fontSize: '20px', fill: '#FFFFFF' });
-               }
+                }
             }
             else {
                 gameState.powerdead(this);
             }
         }
     }
-
-
 
 
 
@@ -678,24 +684,23 @@ class Night4 extends Phaser.Scene {
         }
 
         update(){
-            gameState.bonnieMovement(this);
-            gameState.chicaMovement(this);
-            gameState.foxyMovement(this);
-            gameState.freddyMovement(this);
             if(power > 0){
-               if(second <= 0){
+                gameState.bonnieMovement(this);
+                gameState.chicaMovement(this);
+                gameState.foxyMovement(this);
+                gameState.freddyMovement(this);
+                if(second <= 0){
                    second = secondcons; 
                    power -= 1;
                    gameState.powertext.destroy();
                    gameState.powertext = this.add.text(10, window.innerHeight-100, `Power left:${power}%`, { fontSize: '20px', fill: '#FFFFFF' });
-               }
+                }
             }
             else {
                 gameState.powerdead(this);
             }
         }
     }
-
 
 
 
@@ -796,18 +801,17 @@ class Night5 extends Phaser.Scene {
         }
 
         update(){
-            console.log(bonniecooldown);
-            gameState.bonnieMovement(this);
-            gameState.chicaMovement(this);
-            gameState.foxyMovement(this);
-            gameState.freddyMovement(this);
             if(power > 0){
-               if(second <= 0){
+                gameState.bonnieMovement(this);
+                gameState.chicaMovement(this);
+                gameState.foxyMovement(this);
+                gameState.freddyMovement(this);
+                if(second <= 0){
                    second = secondcons; 
                    power -= 1;
                    gameState.powertext.destroy();
                    gameState.powertext = this.add.text(10, window.innerHeight-100, `Power left:${power}%`, { fontSize: '20px', fill: '#FFFFFF' });
-               }
+                }
             }
             else {
                 gameState.powerdead(this);

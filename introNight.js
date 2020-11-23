@@ -10,7 +10,9 @@ class introNight extends Phaser.Scene {
         this.load.spritesheet('bonnieJumpscare','fnafpicture/bonnieJumpscare.png',{frameWidth: 240,frameHeight:100});
         this.load.spritesheet('chicaJumpscare','fnafpicture/chicaJumpscare.png',{frameWidth: 240,frameHeight:100});
         this.load.spritesheet('freddyJumpscare','fnafpicture/freddyJumpscare.png',{frameWidth: 240,frameHeight:100});
+        this.load.spritesheet('freddyJumpscare2','fnafpicture/freddyJumpscare2.png',{frameWidth: 240,frameHeight:100});
         this.load.spritesheet('foxyJumpscare','fnafpicture/foxyJumpscare.png',{frameWidth: 180,frameHeight:400});
+        this.load.spritesheet('freddySinging','fnafpicture/freddySinging.png',{frameWidth: 50,frameHeight:50});
         this.load.image('rdoor','fnafpicture/rdoor.png');
         this.load.image('llighton','fnafpicture/llighton.png');
         this.load.image('bonniellighton','fnafpicture/bonniellighton.png');
@@ -38,6 +40,7 @@ class introNight extends Phaser.Scene {
         this.load.audio('knock', 'audio/knock.mp3');
         this.load.audio('camsound','audio/nightintro.mp3');
         this.load.audio('powerDown','audio/powerDown.mp3');
+        this.load.audio('freddyMusicBox','audio/freddyMusicBox.mp3');
         this.load.audio('freddyLaugh','audio/freddyLaugh.mp3');
         this.load.audio('kitchenNoise','audio/kitchenNoise.mp3');
         //cam pictures
@@ -335,11 +338,57 @@ class introNight extends Phaser.Scene {
                     rdoorSprite.anims.play('rdooropen',true);
                     gameState.doormove.play();
                 }
-                gameState.powerDown = false;
                 gameState.AMtext.destroy();
                 gameState.ambient1.pause();
                 gameState.powerdied.play();
                 gameState.bg = scene.add.image(0,0,'darkOffice').setOrigin(0,0).setDepth(2);
+                gameState.random = Math.ceil(Math.random()*20000)+10000;
+                scene.time.addEvent({
+                    delay: gameState.random,
+                    callback: ()=>{
+                        gameState.jumpscaresprite = scene.add.sprite(100,120,'freddySinging').setOrigin(0,0).setDepth(4).setScale(2);
+                        gameState.jumpscaresprite.anims.play('freddyS',true);
+                        gameState.freddyMusicBox.play();
+                        gameState.random = Math.ceil(Math.random()*5000)+5000;
+                        scene.time.addEvent({
+                            delay: gameState.random,
+                            callback: ()=>{
+                                gameState.jumpscaresprite.destroy();
+                                gameState.freddyMusicBox.pause();
+                                gameState.random = Math.ceil(Math.random()*1000)+4000;
+                                scene.time.addEvent({
+                                    delay: gameState.random,
+                                    callback: ()=>{
+                                        gameState.jumpscaresprite = scene.add.sprite(0,0,'freddyJumpscare2').setOrigin(0,0).setDepth(4).setScale(5);
+                                        gameState.jumpscaresprite.anims.play('freddyJS2');
+                                        gameState.robotscream.play();
+                                        scene.time.addEvent({
+                                            delay: 800,
+                                            callback: ()=>{
+                                                gameState.robotscream.pause();
+                                                scene.scene.stop(`Night${gameState.night}`);
+                                                scene.scene.stop('camera');
+                                                reset();
+                                                scene.scene.start('gameOver');
+                                            },
+                                            startAt: 0,
+                                            timeScale: 1,
+                                        });
+                                    },
+                                    startAt: 0,
+                                    timeScale: 1,
+                                });
+                            },
+                            startAt: 0,
+                            timeScale: 1,
+                        });
+                    },
+                    startAt: 0,
+                    timeScale: 1,
+                });
+                
+                
+                gameState.powerDown = false;
             }
         }
         gameState.addButtons = function(scene){
@@ -911,9 +960,21 @@ class introNight extends Phaser.Scene {
             frames:this.anims.generateFrameNames('freddyJumpscare',{start: 0,end: 5})
         });
         this.anims.create({
+            key: 'freddyJS2',
+            frameRate: 10,
+            repeat: -1,
+            frames:this.anims.generateFrameNames('freddyJumpscare2',{start: 0,end: 7})
+        });
+        this.anims.create({
             key: 'foxyJS',
             frameRate: 20,
             frames:this.anims.generateFrameNames('foxyJumpscare',{start: 0,end: 9})
+        });
+        this.anims.create({
+            key: 'freddyS',
+            frameRate: 10,
+            repeat: -1,
+            frames:this.anims.generateFrameNames('freddySinging',{start: 0,end: 9})
         });
         
         gameState.doormove = this.sound.add('doormove');
@@ -932,6 +993,7 @@ class introNight extends Phaser.Scene {
         gameState.phonecall5 = this.sound.add('phonecall5');
         gameState.kitchenNoise = this.sound.add('kitchenNoise');
         gameState.freddyLaugh = this.sound.add('freddyLaugh');
+        gameState.freddyMusicBox = this.sound.add('freddyMusicBox');
 	}
     update(){
         
