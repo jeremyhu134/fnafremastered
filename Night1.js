@@ -4,7 +4,7 @@
     var rdoorSprite;
     var rlightSprite;
 
-    var power = 1;
+    var power = 100;
 
     var AM = 12;
 
@@ -16,8 +16,8 @@
 
     var cameraOn = false;
 
-    var second = 10;
-    var secondcons = 10;
+    var second = 9;
+    var secondcons = 9;
 
     var powerlevel = 1;
 

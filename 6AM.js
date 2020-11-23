@@ -40,6 +40,7 @@ class gameOver extends Phaser.Scene {
         this.time.addEvent({
             delay: 10000,
             callback: ()=>{
+                gameState.death.pause();
                 this.scene.stop('gameOver');
 			    this.scene.start(`MenuScene`);
             },
