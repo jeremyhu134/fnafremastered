@@ -818,3 +818,113 @@ class Night5 extends Phaser.Scene {
             }
         }
     }
+
+
+
+
+class Night6 extends Phaser.Scene {
+        constructor() {
+            super({ key: 'Night6' })
+        }
+        preload(){
+            
+        }
+        create(){
+            gameState.openCAMS = false
+            gameState.powerDown = true;
+            gameState.gusage = this.add.sprite(10000,10000,'gusage').setOrigin(0,0);
+            gameState.gusage2 = this.add.sprite(10000,10000,'yusage').setOrigin(0,0);
+            gameState.gusage3 = this.add.sprite(10000,10000,'rusage').setOrigin(0,0);
+            gameState.foxyChecked = false;
+            bonniecooldown = Math.ceil(Math.random()*400)+600;
+            chicacooldown = Math.ceil(Math.random()*400)+600;
+            foxycooldown = Math.ceil(Math.random()*1000)+100;
+            freddycooldown = Math.ceil(Math.random()*1000)+300;
+            this.scene.launch('camera');
+            //background
+            this.add.image(0,0,'bg').setOrigin(0,0).setDepth(0);
+            gameState.bg = this.add.image(0,0,'Office').setOrigin(0,0).setDepth(2);
+            /*this.physics.add.collider(, , function() {
+                
+            });*/  
+            gameState.ldoor = this.physics.add.group();
+            gameState.rdoor = this.physics.add.group();
+            gameState.camera = this.physics.add.group();
+            this.add.sprite(100,window.innerHeight-60,'gusage').setOrigin(0,0);
+            this.scene.pause('camera');
+            //audio
+            gameState.officenoise.play(gameState.loopSound);
+            gameState.ambient1.play(gameState.loopSound2);
+            //Right Door
+            rdoorSprite = gameState.rdoor.create(990,63,'ldoor').setOrigin(0,0).setFlipX(true).setDepth(2);
+            gameState.ldoorButton = this.add.sprite(20,150,'button').setOrigin(0,0).setInteractive().setDepth(2);
+            gameState.llightButton = this.add.sprite(20,230,'button').setOrigin(0,0).setInteractive().setDepth(2);
+            //Left Door
+            ldoorSprite = gameState.ldoor.create(89,63,'ldoor').setOrigin(0,0).setDepth(2);
+            gameState.rdoorButton = this.add.sprite(1130,150,'button').setOrigin(0,0).setInteractive().setDepth(2);
+            gameState.rlightButton = this.add.sprite(1130,230,'button').setOrigin(0,0).setInteractive().setDepth(2);
+            //Usage colors
+            gameState.gusage = this.add.sprite(100,window.innerHeight-60,'gusage').setOrigin(0,0);;
+            gameState.yusage;
+            gameState.rusage;
+            //texts
+            this.add.text(10, window.innerHeight-50, 'Usage: ', { fontSize: '20px', fill: '#FFFFFF' });
+            gameState.AMtext = this.add.text(window.innerWidth - 130, 20, `${AM} AM`, { fontSize: '30px', fill: '#FFFFFF' }).setDepth(4);
+            gameState.nighttext = this.add.text(window.innerWidth - 115, 50, `Night ${gameState.night}`, { fontSize: '15px', fill: '#FFFFFF' }).setDepth(4);
+            gameState.powertext = this.add.text(10, window.innerHeight-100, `Power left:${power}%`, { fontSize: '20px', fill: '#FFFFFF' }).setDepth(4);
+            //buttons
+            gameState.camera = this.add.sprite(window.innerWidth/2-100,window.innerHeight-50,'camera').setInteractive();
+            gameState.addButtons(this);
+            //timer
+            var timer = this.time.addEvent({
+                delay: 85000,
+                callback: ()=>{
+                    if(AM === 12){
+                        AM = 1;
+                    }
+                    else {
+                        AM += 1;
+                        if(AM === 6){
+                            gameState.win6AM(this);
+                        }
+                    }
+                    gameState.AMtext.destroy();
+                    gameState.AMtext = this.add.text(window.innerWidth - 130, 20, `${AM} AM`, { fontSize: '30px', fill: '#FFFFFF' }).setDepth(4);
+                },
+                repeat: 5,
+                startAt: 0,
+                timeScale: 1,
+            });
+            gameState.secondcounter = this.time.addEvent({
+                delay: 1000,
+                callback: ()=>{
+                    second = second - 1;
+                    //console.log(secondcons);
+                },
+                loop: true,
+                startAt: 0,
+                timeScale: 1,
+            });
+            this.input.on('pointerup',()=>{
+                gameState.checkPowerUsage(this);
+            });
+        }
+
+        update(){
+            if(power > 0){
+                gameState.bonnieMovement(this);
+                gameState.chicaMovement(this);
+                gameState.foxyMovement(this);
+                gameState.freddyMovement(this);
+                if(second <= 0){
+                   second = secondcons; 
+                   power -= 1;
+                   gameState.powertext.destroy();
+                   gameState.powertext = this.add.text(10, window.innerHeight-100, `Power left:${power}%`, { fontSize: '20px', fill: '#FFFFFF' });
+                }
+            }
+            else {
+                gameState.powerdead(this);
+            }
+        }
+    }

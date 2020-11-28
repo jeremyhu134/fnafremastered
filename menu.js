@@ -25,7 +25,13 @@ class MenuScene extends Phaser.Scene {
         else {
             gameState.night = localStorage.getItem("night");
         }
-        gameState.nightButton = this.add.text( 100, 440, `Continue : Night ${gameState.night}`, {fill: '#FFFFFF', fontSize: '25px'}).setInteractive();
+        if(gameState.night > 5){
+            gameState.nightButton = this.add.text( 100, 440, `Continue : Night 5`, {fill: '#FFFFFF', fontSize: '25px'}).setInteractive();
+            gameState.night6Button = this.add.text( 100, 480, `Night 6`, {fill: '#FFFFFF', fontSize: '25px'}).setInteractive();
+        }
+        else {
+            gameState.nightButton = this.add.text( 100, 440, `Continue : Night ${gameState.night}`, {fill: '#FFFFFF', fontSize: '25px'}).setInteractive();
+        }
         gameState.menunoise.play();
 		gameState.newGameButton.on('pointerdown', () => {
             gameState.menunoise.setMute(true);
@@ -35,10 +41,20 @@ class MenuScene extends Phaser.Scene {
 			this.scene.start('introNight');
 		});
         gameState.nightButton.on('pointerdown', () => {
+            if(gameState.night > 5){
+                gameState.night = 5;
+            }
             gameState.menunoise.setMute(true);
 			this.scene.stop('MenuScene');
 			this.scene.start('introNight');
 		});
+        if(gameState.night > 5){
+            gameState.night6Button.on('pointerdown', () => {
+                gameState.menunoise.setMute(true);
+                this.scene.stop('MenuScene');
+                this.scene.start('introNight');
+            });
+        }
 	}
     update(){
         

@@ -108,7 +108,7 @@ class introNight extends Phaser.Scene {
             delay: 3000,
             callback: ()=>{
                 this.scene.stop('introNight');
-			    this.scene.start(`Night${gameState.night}`);
+                this.scene.start(`Night${gameState.night}`);
             },
             startAt: 0,
             timeScale: 1,
@@ -541,6 +541,9 @@ class introNight extends Phaser.Scene {
                 else if(gameState.night == 5){
                    bonniecooldown = Math.ceil(Math.random()*550)+300; 
                 }
+                else if(gameState.night == 6){
+                   bonniecooldown = Math.ceil(Math.random()*400)+300; 
+                }
                 if(bonniePOS == 7){
                     bonniePOS = 6;
                 }
@@ -650,6 +653,9 @@ class introNight extends Phaser.Scene {
                 else if(gameState.night == 5){
                    chicacooldown = Math.ceil(Math.random()*450)+450; 
                 }
+                else if(gameState.night == 6){
+                   chicacooldown = Math.ceil(Math.random()*350)+300; 
+                }
                 if(chicaPOS == 7){
                     chicaPOS = 6;
                 }
@@ -757,6 +763,9 @@ class introNight extends Phaser.Scene {
                 else if(gameState.night == 5){
                    freddycooldown = Math.ceil(Math.random()*800)+500;  
                 }
+                else if(gameState.night == 6){
+                   freddycooldown = Math.ceil(Math.random()*500)+500;  
+                }
                 if(freddyPOS == 7){
                     freddyPOS = 6;
                 }
@@ -858,6 +867,9 @@ class introNight extends Phaser.Scene {
                 }
                 else if(gameState.night == 5){
                     foxycooldown = Math.ceil(Math.random()*200)+700; 
+                }
+                else if(gameState.night == 6){
+                    foxycooldown = Math.ceil(Math.random()*100)+700; 
                 }
                 if(foxyPOS == 4){
                     gameState.foxyChecked = false;
