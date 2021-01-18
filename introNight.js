@@ -122,7 +122,17 @@ class introNight extends Phaser.Scene {
             gameState.phonecall.setMute(true);
             scene.scene.stop(`Night${gameState.night}`);
             scene.scene.stop('camera');
-            gameState.night += 1;
+            if(gameState.night < 5){
+                gameState.night += 1;
+            }
+            else if (gameState.night == 5){
+                gameState.nightSix = true;
+                localStorage.setItem("nightSix",true);
+            }
+            else if (gameState.night == 6){
+                gameState.customNight = true;
+                localStorage.setItem("customNight",true);
+            }
             localStorage.setItem("night",gameState.night);
             reset();
             scene.scene.start('SIXAM');
