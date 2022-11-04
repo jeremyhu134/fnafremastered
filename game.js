@@ -21,5 +21,25 @@ const game = new Phaser.Game(config);
 let gameState = {               
     night: 1,
     ldoorOpen: true,
-    rdoorOpen: true
+    rdoorOpen: true,
+    
+    bonnie: {
+        active: false,
+        cooldown: 0,
+    },chica: {
+        active: false,
+        cooldown: 0,
+    },freddy: {
+        active: false,
+        cooldown: 0,
+    },foxy: {
+        active: false,
+        cooldown: 0,
+    },
+    resetAll: function(){
+        gameState.foxy.active = false;
+        gameState.bonnie.active = false;
+        gameState.freddy.active = false;
+        gameState.chica.active = false;
+    }
 }

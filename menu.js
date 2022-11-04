@@ -11,6 +11,7 @@ class MenuScene extends Phaser.Scene {
         var loops = {
             loop: true
         }
+        gameState.resetAll();
         gameState.menunoise = this.sound.add('noises');
 		this.add.text( 100, 40, 'Five', {fill: '#FFFFFF', fontSize: '40px'});
         this.add.text( 100, 80, 'Nights', {fill: '#FFFFFF', fontSize: '40px'});
@@ -23,6 +24,10 @@ class MenuScene extends Phaser.Scene {
 		gameState.newGameButton.on('pointerdown', () => {
             gameState.menunoise.setMute(true);
             gameState.night = 1;
+            gameState.bonnie.cooldown = 15000
+            gameState.bonnie.active = true;
+            gameState.chica.cooldown = 19000
+            gameState.chica.active = true;
 			this.scene.stop('MenuScene');
 			this.scene.start('introNight');
 		});

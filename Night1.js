@@ -1,10 +1,10 @@
-var ldoorSprite;
+    var ldoorSprite;
     var llightSprite;
             
     var rdoorSprite;
     var rlightSprite;
 
-    var power = 100;
+    var power = 1;
 
     var AM = 12;
 
@@ -16,10 +16,9 @@ var ldoorSprite;
 
     var cameraOn = false;
 
-    var second = 10;
-    var secondcons = 10;
-
     var powerlevel = 1;
+    var powerlimit = 600;
+    var time = 600;
 
     var camPOS = 1;
 
@@ -265,196 +264,224 @@ var ldoorSprite;
         create(){
             bonniecooldown = 15000;
             chicacooldown = 19000;
+            function powerLevelCheck(scene){
+                if(powerlevel == 1){
+                    if(gameState.gusage1){
+                        gameState.gusage1.destroy();
+                    }
+                } 
+                else if(powerlevel == 2){
+                    gameState.gusage1 = scene.add.sprite(140,window.innerHeight-60,'gusage').setOrigin(0,0);
+                    if(gameState.gusage2){
+                        gameState.gusage2.destroy();
+                    }
+                } 
+                else if(powerlevel == 3){
+                    gameState.gusage2 = scene.add.sprite(180,window.innerHeight-60,'yusage').setOrigin(0,0);
+                    if(gameState.gusage3){
+                        gameState.gusage3.destroy();
+                    }
+                } 
+                else if(powerlevel == 4){
+                    gameState.gusage3 = scene.add.sprite(220,window.innerHeight-60,'rusage').setOrigin(0,0);
+                }
+            };
             gameState.bonnieMovement = function(scene){
-                bonniecooldown -= 1;
-                if(bonniecooldown <= 0){
-                    if(gameState.night === 1){
-                       bonniecooldown = Math.ceil(Math.random()*500)+2500; 
-                    }
-                    if(bonniePOS == 7){
-                        bonniePOS = 6;
-                    }
-                    else if(bonniePOS == 6){
-                        gameState.random = Math.ceil(Math.random()*2);
-                        if(gameState.random == 1){
-                            bonniePOS = 5; 
+                if(gameState.bonnie.active == true){
+                    bonniecooldown -= 1;
+                    if(bonniecooldown <= 0){
+                        if(gameState.night == 1){
+                           bonniecooldown = Math.ceil(Math.random()*500)+2500; 
+                        }else if(gameState.night == 2){
+                           bonniecooldown = Math.ceil(Math.random()*500)+2500; 
                         }
-                        else if(gameState.random == 2){
-                            bonniePOS = 2; 
+                        if(bonniePOS == 7){
+                            bonniePOS = 6;
                         }
-                    }
-                    else if(bonniePOS == 5){
-                        bonniePOS = 2;
-                    }
-                    else if(bonniePOS == 2){
-                        gameState.random = Math.ceil(Math.random()*2);
-                        if(gameState.random == 1){
-                            bonniePOS = 3; 
-                        }
-                        else if(gameState.random == 2){
-                            bonniePOS = 1; 
-                        }
-                    }
-                    else if(bonniePOS == 3){
-                        gameState.random = Math.ceil(Math.random()*2);
-                        if(gameState.random == 1){
-                            bonniePOS = 2; 
-                        }
-                        else if(gameState.random == 2){
-                            bonniePOS = 1; 
-                        }
-                    }
-                    else if(bonniePOS == 1){
-                        bonniecooldown = Math.ceil(Math.random()*500)+700;
-                        if(llightOn == true){
-                            llightSprite.destroy();
-                            gameState.lighttrigger.pause();
-                        }
-                        bonniePOS = 0;
-                    }
-                    else if(bonniePOS == 0){
-                        if(ldoorOpen == false){
-                            if(llightOn == true){
-                                powerlevel -= 1;
-                                llightSprite.destroy();
-                            }
-                            gameState.lighttrigger.pause();
-                            llightOn = false;
+                        else if(bonniePOS == 6){
                             gameState.random = Math.ceil(Math.random()*2);
                             if(gameState.random == 1){
-                                bonniePOS = 7; 
+                                bonniePOS = 5; 
                             }
                             else if(gameState.random == 2){
-                                bonniePOS = 6; 
+                                bonniePOS = 2; 
                             }
                         }
-                        else{
-                            scene.scene.pause('camera');
-                            scene.scene.bringToTop('Night1');
-                            gameState.robotscream.play();
-                            cameraOn = false;
+                        else if(bonniePOS == 5){
+                            bonniePOS = 2;
+                        }
+                        else if(bonniePOS == 2){
+                            gameState.random = Math.ceil(Math.random()*2);
+                            if(gameState.random == 1){
+                                bonniePOS = 3; 
+                            }
+                            else if(gameState.random == 2){
+                                bonniePOS = 1; 
+                            }
+                        }
+                        else if(bonniePOS == 3){
+                            gameState.random = Math.ceil(Math.random()*2);
+                            if(gameState.random == 1){
+                                bonniePOS = 2; 
+                            }
+                            else if(gameState.random == 2){
+                                bonniePOS = 1; 
+                            }
+                        }
+                        else if(bonniePOS == 1){
+                            bonniecooldown = Math.ceil(Math.random()*500)+700;
                             if(llightOn == true){
                                 llightSprite.destroy();
+                                gameState.lighttrigger.pause();
                             }
-                            gameState.jumpscaresprite = scene.add.sprite(0,0,'bonnieJumpscare').setOrigin(0,0).setDepth(4).setScale(5);
-                            gameState.jumpscaresprite.anims.play('bonnieJS',true);
-                            gameState.officenoise.pause();
-                            gameState.phonecall.pause();
-                            gameState.lighttrigger.pause();
-                            gameState.ambient1.pause();
-                            gameState.doormove.pause();
-                            scene.time.addEvent({
-                                delay: 1500,
-                                callback: ()=>{
-                                    gameState.robotscream.pause();
-                                    scene.scene.stop('Night1');
-                                    scene.scene.stop('camera');
-                                    reset();
-                                    scene.scene.start('gameOver');
-                                },
-                                startAt: 0,
-                                timeScale: 1,
-                            });
+                            bonniePOS = 0;
+                        }
+                        else if(bonniePOS == 0){
+                            if(ldoorOpen == false){
+                                if(llightOn == true){
+                                    powerlevel -= 1;
+                                    llightSprite.destroy();
+                                }
+                                gameState.lighttrigger.pause();
+                                llightOn = false;
+                                gameState.random = Math.ceil(Math.random()*2);
+                                if(gameState.random == 1){
+                                    bonniePOS = 7; 
+                                }
+                                else if(gameState.random == 2){
+                                    bonniePOS = 6; 
+                                }
+                            }
+                            else{
+                                scene.scene.pause('camera');
+                                scene.scene.bringToTop('Night1');
+                                gameState.robotscream.play();
+                                cameraOn = false;
+                                if(llightOn == true){
+                                    llightSprite.destroy();
+                                }
+                                gameState.jumpscaresprite = scene.add.sprite(0,0,'bonnieJumpscare').setOrigin(0,0).setDepth(4).setScale(5);
+                                gameState.jumpscaresprite.anims.play('bonnieJS',true);
+                                gameState.officenoise.pause();
+                                gameState.phonecall.pause();
+                                gameState.lighttrigger.pause();
+                                gameState.ambient1.pause();
+                                gameState.doormove.pause();
+                                scene.time.addEvent({
+                                    delay: 1500,
+                                    callback: ()=>{
+                                        gameState.robotscream.pause();
+                                        scene.scene.stop('Night1');
+                                        scene.scene.stop('camera');
+                                        reset();
+                                        scene.scene.start('gameOver');
+                                    },
+                                    startAt: 0,
+                                    timeScale: 1,
+                                });
+                            }
                         }
                     }
                 }
             }
             gameState.chicaMovement = function(scene){
-                chicacooldown -= 1;
-                if(chicacooldown <= 0){
-                    if(gameState.night === 1){
-                       chicacooldown = Math.ceil(Math.random()*500)+2100; 
-                    }
-                    else if(gameState.night === 2){
-                       chicacooldown = 2100; 
-                    }
-                    if(chicaPOS == 7){
-                        chicaPOS = 6;
-                    }
-                    else if(chicaPOS == 6){
-                        gameState.random = Math.ceil(Math.random()*4);
-                        if(gameState.random == 1){
-                            chicaPOS = 8; 
+                if(gameState.chica.active == true){
+                    chicacooldown -= 1;
+                    if(chicacooldown <= 0){
+                        if(gameState.night == 1){
+                           chicacooldown = Math.ceil(Math.random()*500)+2100; 
                         }
-                        else if(gameState.random == 2){
-                            chicaPOS = 9; 
+                        else if(gameState.night == 2){
+                           chicacooldown = Math.ceil(Math.random()*500)+2100;  
                         }
-                        else if(gameState.random == 3|| gameState.random == 4){
-                            chicaPOS = 10; 
+                        if(chicaPOS == 7){
+                            chicaPOS = 6;
                         }
-                    }
-                    else if(chicaPOS == 8){
-                        gameState.random = Math.ceil(Math.random()*3);
-                        if(gameState.random == 1){
-                            chicaPOS = 6; 
-                        }
-                        else if(gameState.random == 2){
-                            chicaPOS = 10; 
-                        }
-                    }
-                    else if(chicaPOS == 9){
-                        gameState.random = Math.ceil(Math.random()*3);
-                        if(gameState.random == 1){
-                            chicaPOS = 6; 
-                        }
-                        else if(gameState.random == 2){
-                            chicaPOS = 10; 
-                        }
-                    }
-                    else if(chicaPOS == 10){
-                        chicaPOS = 11;
-                    }
-                    else if(chicaPOS == 11){
-                        chicacooldown = Math.ceil(Math.random()*500)+700;
-                        if(rlightOn == true){
-                            rlightSprite.destroy();
-                            gameState.lighttrigger.pause();
-                        }
-                        chicaPOS = 0; 
-                    }
-                    else if(chicaPOS == 0){
-                        if(rdoorOpen == false){
-                            if(rlightOn == true){
-                                rlightSprite.destroy();
-                                powerlevel -= 1;
-                            }
-                            gameState.lighttrigger.pause();
-                            rlightOn = false;
-                            gameState.random = Math.ceil(Math.random()*2);
+                        else if(chicaPOS == 6){
+                            gameState.random = Math.ceil(Math.random()*4);
                             if(gameState.random == 1){
-                                chicaPOS = 7; 
+                                chicaPOS = 8; 
                             }
                             else if(gameState.random == 2){
-                                chicaPOS = 6; 
+                                chicaPOS = 9; 
+                            }
+                            else if(gameState.random == 3|| gameState.random == 4){
+                                chicaPOS = 10; 
                             }
                         }
-                        else{
-                            scene.scene.pause('camera');
-                            scene.scene.bringToTop('Night1');
-                            gameState.robotscream.play();
-                            cameraOn = false;
+                        else if(chicaPOS == 8){
+                            gameState.random = Math.ceil(Math.random()*3);
+                            if(gameState.random == 1){
+                                chicaPOS = 6; 
+                            }
+                            else if(gameState.random == 2){
+                                chicaPOS = 10; 
+                            }
+                        }
+                        else if(chicaPOS == 9){
+                            gameState.random = Math.ceil(Math.random()*3);
+                            if(gameState.random == 1){
+                                chicaPOS = 6; 
+                            }
+                            else if(gameState.random == 2){
+                                chicaPOS = 10; 
+                            }
+                        }
+                        else if(chicaPOS == 10){
+                            chicaPOS = 11;
+                        }
+                        else if(chicaPOS == 11){
+                            chicacooldown = Math.ceil(Math.random()*500)+700;
                             if(rlightOn == true){
                                 rlightSprite.destroy();
+                                gameState.lighttrigger.pause();
                             }
-                            gameState.jumpscaresprite = scene.add.sprite(0,0,'chicaJumpscare').setOrigin(0,0).setDepth(4).setScale(5);
-                            gameState.jumpscaresprite.anims.play('chicaJS',true);
-                            gameState.officenoise.pause();
-                            gameState.phonecall.pause();
-                            gameState.lighttrigger.pause();
-                            gameState.ambient1.pause();
-                            gameState.doormove.pause();
-                            scene.time.addEvent({
-                                delay: 1500,
-                                callback: ()=>{
-                                    gameState.robotscream.pause();
-                                    scene.scene.stop('Night1');
-                                    scene.scene.stop('camera');
-                                    reset();
-                                    scene.scene.start('gameOver');
-                                },
-                                startAt: 0,
-                                timeScale: 1,
-                            });
+                            chicaPOS = 0; 
+                        }
+                        else if(chicaPOS == 0){
+                            if(rdoorOpen == false){
+                                if(rlightOn == true){
+                                    rlightSprite.destroy();
+                                    powerlevel -= 1;
+                                }
+                                gameState.lighttrigger.pause();
+                                rlightOn = false;
+                                gameState.random = Math.ceil(Math.random()*2);
+                                if(gameState.random == 1){
+                                    chicaPOS = 7; 
+                                }
+                                else if(gameState.random == 2){
+                                    chicaPOS = 6; 
+                                }
+                            }
+                            else{
+                                scene.scene.pause('camera');
+                                scene.scene.bringToTop('Night1');
+                                gameState.robotscream.play();
+                                cameraOn = false;
+                                if(rlightOn == true){
+                                    rlightSprite.destroy();
+                                }
+                                gameState.jumpscaresprite = scene.add.sprite(0,0,'chicaJumpscare').setOrigin(0,0).setDepth(4).setScale(5);
+                                gameState.jumpscaresprite.anims.play('chicaJS',true);
+                                gameState.officenoise.pause();
+                                gameState.phonecall.pause();
+                                gameState.lighttrigger.pause();
+                                gameState.ambient1.pause();
+                                gameState.doormove.pause();
+                                scene.time.addEvent({
+                                    delay: 1500,
+                                    callback: ()=>{
+                                        gameState.robotscream.pause();
+                                        scene.scene.stop('Night1');
+                                        scene.scene.stop('camera');
+                                        reset();
+                                        scene.scene.start('gameOver');
+                                    },
+                                    startAt: 0,
+                                    timeScale: 1,
+                                });
+                            }
                         }
                     }
                 }
@@ -509,7 +536,6 @@ var ldoorSprite;
             /*this.physics.add.collider(, , function() {
                 
             });*/  
-            this.add.sprite(100,window.innerHeight-60,'gusage').setOrigin(0,0);
             this.scene.pause('camera');
             //audio
             gameState.doormove = this.sound.add('doormove');
@@ -536,7 +562,7 @@ var ldoorSprite;
             gameState.yusage;
             gameState.rusage;
             //texts
-            this.add.text(10, window.innerHeight-50, 'Usage: ', { fontSize: '20px', fill: '#FFFFFF' });
+            gameState.usagetext = this.add.text(10, window.innerHeight-50, 'Usage: ', { fontSize: '20px', fill: '#FFFFFF' });
             gameState.AMtext = this.add.text(window.innerWidth - 130, 20, `${AM} AM`, { fontSize: '30px', fill: '#FFFFFF' }).setDepth(4);
             gameState.nighttext = this.add.text(window.innerWidth - 115, 50, `Night ${gameState.night}`, { fontSize: '15px', fill: '#FFFFFF' }).setDepth(4);
             gameState.powertext = this.add.text(10, window.innerHeight-100, `Power left:${power}%`, { fontSize: '20px', fill: '#FFFFFF' }).setDepth(4);
@@ -547,22 +573,20 @@ var ldoorSprite;
                 gameState.phonecall.setMute(true);
                 gameState.muteb.destroy();
             });
-            gameState.ldoorButton.on('pointerup', () => {
+            gameState.ldoorButton.on('pointerup', () => {   
                 if(power > 0&& cameraOn === false){
                     gameState.doormove.play();
                     ldoorOpen = !(ldoorOpen);
                     if(ldoorOpen === false){
-                        secondcons /= 2;
-                        second -= 1;
                         powerlevel += 1;
                         ldoorSprite.anims.play('ldoorclose',true);
                     }
                     else {
-                        secondcons *= 2;
                         powerlevel -= 1;
                         ldoorSprite.anims.play('ldooropen',true);
                     }
                 }
+                powerLevelCheck(this);
             });
             gameState.llightButton.on('pointerup', () => {
                 if(power > 0&& cameraOn === false){
@@ -573,14 +597,11 @@ var ldoorSprite;
                     }
                     if(llightOn === false){
                         gameState.lighttrigger.pause();
-                        secondcons /= 2;
-                        second -= 1;
                         powerlevel -= 1;
                         llightSprite.destroy();
                     }
                     else {
                         gameState.lighttrigger.play(loopSound2);
-                        secondcons *= 2;
                         powerlevel += 1;
                         if(bonniePOS == 0){
                             if(ldoorOpen == true){
@@ -593,23 +614,22 @@ var ldoorSprite;
                         }
                     }
                 }
+                powerLevelCheck(this);
             });
             gameState.rdoorButton.on('pointerup', () => {
                 if(power > 0 && cameraOn === false){
                     gameState.doormove.play();
                     rdoorOpen = !(rdoorOpen);
                     if(rdoorOpen === false){
-                        secondcons /= 2;
-                        second += 1;
                         powerlevel += 1;
                         rdoorSprite.anims.play('rdoorclose',true);
                     }
                     else {
-                        secondcons *= 2;
                         powerlevel -= 1;
                         rdoorSprite.anims.play('rdooropen',true);
                     }
                 }
+                powerLevelCheck(this);
             });
             gameState.rlightButton.on('pointerup', () => {
                 if(power > 0&& cameraOn === false){
@@ -620,14 +640,11 @@ var ldoorSprite;
                     }
                     if(rlightOn === false){
                         gameState.lighttrigger.pause();
-                        secondcons /= 2;
-                        second -= 1;
                         powerlevel -= 1;
                         rlightSprite.destroy();
                     }
                     else {
                         gameState.lighttrigger.play(loopSound2);
-                        secondcons *= 2;
                         powerlevel += 1;
                         if(chicaPOS == 0){
                             if(rdoorOpen == true){
@@ -640,6 +657,7 @@ var ldoorSprite;
                         }
                     }
                 }
+                powerLevelCheck(this);
             });
             gameState.camera.on('pointerover', () => {
                 console.log(gameState.camerafreeze, camPOS !== bonniePOS);
@@ -647,8 +665,6 @@ var ldoorSprite;
                     cameraOn = !(cameraOn);
                         gameState.cameranoise.play();
                     if(cameraOn === true){
-                        secondcons /= 2;
-                        second -= 1;
                         powerlevel += 1;
                         console.log(powerlevel);
                         this.scene.bringToTop('camera');
@@ -665,25 +681,13 @@ var ldoorSprite;
                         }
                     }
                     else {
-                        secondcons *= 2;
                         powerlevel -= 1;
                         this.scene.bringToTop('Night1');
                         this.scene.pause('camera');
                         gameState.officenoise.resume();
                     }
-                    if(powerlevel === 1|| powerlevel === 2){
-                        gameState.gusage.destroy();
-                        gameState.gusage = this.add.sprite(100,window.innerHeight-60,'gusage').setOrigin(0,0);
-                    } 
-                    else if(powerlevel === 3){
-                        gameState.gusage.destroy();
-                        gameState.gusage = this.add.sprite(100,window.innerHeight-60,'yusage').setOrigin(0,0);
-                    } 
-                    else if(powerlevel === 4){
-                        gameState.gusage.destroy();
-                        gameState.gusage = this.add.sprite(100,window.innerHeight-60,'rusage').setOrigin(0,0);
-                    }
                 }
+                powerLevelCheck(this);
             });
             //timer
             var timer = this.time.addEvent({
@@ -700,6 +704,7 @@ var ldoorSprite;
                             gameState.doormove.setMute(true);
                             gameState.lighttrigger.setMute(true);
                             gameState.phonecall.setMute(true);
+                            gameState.powerTracker.destroy();
                             this.scene.stop(`Night${gameState.night}`);
                             this.scene.stop('camera');
                             gameState.night += 1;
@@ -714,29 +719,62 @@ var ldoorSprite;
                 startAt: 0,
                 timeScale: 1,
             });
-            gameState.secondcounter = this.time.addEvent({
-                delay: 1000,
+            
+            gameState.powerTracker = this.time.addEvent({
+                delay: 1,
                 callback: ()=>{
-                    second = second - 1;
-                    console.log(secondcons);
+                    time -= powerlevel;
+                    console.log(time);
+                    if(power > 0){
+                       if(time <= 0){
+                           time = powerlimit; 
+                           power -= 1;
+                           gameState.powertext.destroy();
+                           gameState.powertext = this.add.text(10, window.innerHeight-100, `Power left:${power}%`, { fontSize: '20px', fill: '#FFFFFF' });
+                       }
+                    } else {
+                        gameState.gusage.destroy();
+                        if(gameState.gusage1){
+                            gameState.gusage1.destroy();
+                        }
+                        if(gameState.gusage2){
+                            gameState.gusage2.destroy();
+                        }
+                        if(gameState.gusage3){
+                            gameState.gusage3.destroy();
+                        }
+                        if(cameraOn == true){
+                            this.scene.bringToTop('Night1');
+                            this.scene.pause('camera');
+                        }
+                        gameState.AMtext.setText("");
+                        gameState.powertext.setText("");
+                        gameState.nighttext.setText("");
+                        gameState.usagetext.setText("");
+                        gameState.camera.destroy();
+                        gameState.ldoorButton.destroy();
+                        gameState.llightButton.destroy();
+                        gameState.rlightButton.destroy();
+                        gameState.rdoorButton.destroy();
+                        gameState.powerTracker.destroy();
+                        if(ldoorOpen == false){
+                            ldoorSprite.anims.play('ldooropen',true);
+                        }
+                        if(rdoorOpen == false){
+                            rdoorSprite.anims.play('rdooropen',true);
+                        }
+                        ldoorOpen = true;
+                        rdoorOpen = true;
+                        llightOn = false;
+                        rlightOn = false;
+                    }
                 },
                 loop: true,
                 startAt: 0,
                 timeScale: 1,
             });
             this.input.on('pointerup',()=>{
-                if(powerlevel === 1|| powerlevel === 2){
-                    gameState.gusage.destroy();
-                    gameState.gusage = this.add.sprite(100,window.innerHeight-60,'gusage').setOrigin(0,0);
-                } 
-                else if(powerlevel === 3){
-                    gameState.gusage.destroy();
-                    gameState.gusage = this.add.sprite(100,window.innerHeight-60,'yusage').setOrigin(0,0);
-                } 
-                else if(powerlevel === 4){
-                    gameState.gusage.destroy();
-                    gameState.gusage = this.add.sprite(100,window.innerHeight-60,'rusage').setOrigin(0,0);
-                }
+                
             });
             gameState.checkcam = function(scene){
                 if(camPOS == 1){
@@ -824,20 +862,23 @@ var ldoorSprite;
                     }
                 }
             }
+            
         }
 
         update(){
-            gameState.bonnieMovement(this);
-            gameState.chicaMovement(this);
-            if(power > 0){
-               if(second <= 0){
-                   second = secondcons; 
-                   power -= 1;
-                   gameState.powertext.destroy();
-                   gameState.powertext = this.add.text(10, window.innerHeight-100, `Power left:${power}%`, { fontSize: '20px', fill: '#FFFFFF' });
-               }
+            if(gameState.bonnie.active == true){
+                gameState.bonnieMovement(this);
             }
-            else {
+            if(gameState.chica.active == true){
+                gameState.chicaMovement(this);
+            }
+            if(gameState.freddy.active == true){
+                gameState.freddyMovement(this);
+            }
+            if(gameState.foxy.active == true){
+                gameState.foxyMovement(this);
+            }
+            if(power <= 0){
                 
             }
         }
