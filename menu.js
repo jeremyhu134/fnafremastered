@@ -21,21 +21,19 @@ class MenuScene extends Phaser.Scene {
         gameState.newGameButton = this.add.text( 100, 400, 'New Game', {fill: '#FFFFFF', fontSize: '25px'}).setInteractive();
         gameState.nightButton = this.add.text( 100, 440, `Continue : Night ${gameState.night}`, {fill: '#FFFFFF', fontSize: '25px'}).setInteractive();
         gameState.menunoise.play();
-		gameState.newGameButton.on('pointerdown', () => {
-            gameState.menunoise.setMute(true);
-            gameState.night = 1;
-            gameState.bonnie.cooldown = 15000
-            gameState.bonnie.active = true;
-            gameState.chica.cooldown = 19000
-            gameState.chica.active = true;
-			this.scene.stop('MenuScene');
-			this.scene.start('introNight');
-		});
+	gameState.newGameButton.on('pointerdown', () => {
+	    gameState.menunoise.setMute(true);
+	    gameState.night = 1;
+	    gameState.bonnie.active = true;
+	    gameState.chica.active = true;
+		this.scene.stop('MenuScene');
+		this.scene.start('introNight');
+	});
         gameState.nightButton.on('pointerdown', () => {
-            gameState.menunoise.setMute(true);
-			this.scene.stop('MenuScene');
-			this.scene.start('introNight');
-		});
+        	gameState.menunoise.setMute(true);
+		this.scene.stop('MenuScene');
+		this.scene.start('introNight');
+	});
 	}
     update(){
         
