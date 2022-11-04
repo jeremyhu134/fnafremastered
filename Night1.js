@@ -289,11 +289,17 @@
                 }
             };
 	    if(gameState.night == 1){
-		bonniecooldown = 2100;
-            	chicacooldown = 15000;
+		bonniecooldown = 14000;
+            	chicacooldown = 19000;
+		gameState.bonnie.active = true;
+	    	gameState.chica.active = true;
 	    }
 	    else if(gameState.night == 2){
 		bonniePOS = 2;
+		bonniecooldown = 2100;
+            	chicacooldown = 15000;
+		gameState.bonnie.active = true;
+	    	gameState.chica.active = true;
 	    }
             gameState.bonnieMovement = function(scene){
                 if(gameState.bonnie.active == true){
