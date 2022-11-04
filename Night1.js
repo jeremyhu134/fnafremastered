@@ -4,7 +4,7 @@
     var rdoorSprite;
     var rlightSprite;
 
-    var power = 1;
+    var power = 100;
 
     var AM = 12;
 
