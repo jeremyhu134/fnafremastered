@@ -43,6 +43,10 @@
         rdoorOpen = true;
         llightOn = false;
         rlightOn = false;
+	bonniePOS = 7;  
+	chicaPOS = 7;
+	freddyPOS = 7;
+	foxyPOS = 7;
     }
 
     class camera extends Phaser.Scene {
@@ -370,6 +374,7 @@
                                 scene.time.addEvent({
                                     delay: 1500,
                                     callback: ()=>{
+					reset();
                                         gameState.robotscream.pause();
                                         scene.scene.stop('Night1');
                                         scene.scene.stop('camera');
@@ -472,6 +477,7 @@
                                 scene.time.addEvent({
                                     delay: 1500,
                                     callback: ()=>{
+					reset();
                                         gameState.robotscream.pause();
                                         scene.scene.stop('Night1');
                                         scene.scene.stop('camera');
@@ -699,17 +705,17 @@
                     else {
                         AM += 1;
                         if(AM === 6){
-                            gameState.officenoise.setMute(true);
-                            gameState.ambient1.setMute(true);
-                            gameState.doormove.setMute(true);
-                            gameState.lighttrigger.setMute(true);
-                            gameState.phonecall.setMute(true);
-                            gameState.powerTracker.destroy();
-                            this.scene.stop(`Night${gameState.night}`);
-                            this.scene.stop('camera');
-                            gameState.night += 1;
-                            reset();
-			                this.scene.start('SIXAM');
+				gameState.officenoise.setMute(true);
+				gameState.ambient1.setMute(true);
+				gameState.doormove.setMute(true);
+				gameState.lighttrigger.setMute(true);
+				gameState.phonecall.setMute(true);
+				gameState.powerTracker.destroy();
+				this.scene.stop(`Night${gameState.night}`);
+				this.scene.stop('camera');
+				gameState.night += 1;
+				reset();
+				this.scene.start('SIXAM');
                         }
                     }
                     gameState.AMtext.destroy();
