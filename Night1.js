@@ -266,8 +266,6 @@
             this.load.audio('robotscream', 'audio/robotscream.mp3');
         }
         create(){
-            bonniecooldown = 15000;
-            chicacooldown = 19000;
             function powerLevelCheck(scene){
                 if(powerlevel == 1){
                     if(gameState.gusage1){
@@ -290,6 +288,13 @@
                     gameState.gusage3 = scene.add.sprite(220,window.innerHeight-60,'rusage').setOrigin(0,0);
                 }
             };
+	    if(gameState.night == 1){
+		bonniecooldown = 2100;
+            	chicacooldown = 15000;
+	    }
+	    else if(gameState.night == 2){
+		bonniePOS = 2;
+	    }
             gameState.bonnieMovement = function(scene){
                 if(gameState.bonnie.active == true){
                     bonniecooldown -= 1;
