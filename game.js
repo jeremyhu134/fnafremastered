@@ -1,6 +1,6 @@
 const config = {
   type: Phaser.AUTO,
-  width: window.innerWidth,
+  width: window.innerWidth+50,
   height: window.innerHeight,
   backgroundColor: "000000",
     physics: {
@@ -12,14 +12,16 @@ const config = {
     },
   scene:[MenuScene,introNight,SIXAM,camera,Night1,gameOver],
     scale: {
-        zoom: 0.95
+        zoom: 0.95,
+        mode: Phaser.Scale.FIT,
+        autoCenter: Phaser.Scale.NONE
     }
 };
 
 const game = new Phaser.Game(config);
 
 let gameState = {               
-    night: 1,
+    night: 4,
     ldoorOpen: true,
     rdoorOpen: true,
     
@@ -41,5 +43,10 @@ let gameState = {
         gameState.bonnie.active = false;
         gameState.freddy.active = false;
         gameState.chica.active = false;
+        gameState.ldoorOpen = true;
+        gameState.rdoorOpen = true;
+    },
+    save: function(){
+        localStorage.setItem(1, gameState.night);
     }
 }
