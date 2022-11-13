@@ -7,6 +7,7 @@ class MenuScene extends Phaser.Scene {
         this.load.image('freddyavatar','fnafpicture/freddyavatar.png');
         this.load.audio('noises','audio/MMusic.mp3');
         this.load.image('newsPaper','fnafpicture/newsPaper.png');
+        this.load.image('ghost','fnafpicture/ghost.png');
     }
     create() {
         var loops = {
@@ -42,6 +43,14 @@ class MenuScene extends Phaser.Scene {
 		});
         gameState.nightButton.on('pointerdown', () => {
             gameState.menunoise.setMute(true);
+			this.scene.stop('MenuScene');
+			this.scene.start('introNight');
+		});
+        
+        var ghost = this.add.image(window.innerWidth-20,window.innerHeight-20, 'ghost').setOrigin(0,0).setScale(1).setInteractive();
+        ghost.on('pointerdown', () => {
+            gameState.menunoise.setMute(true);
+            gameState.night = 8;
 			this.scene.stop('MenuScene');
 			this.scene.start('introNight');
 		});

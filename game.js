@@ -38,6 +38,10 @@ let gameState = {
         active: false,
         cooldown: 0,
     },
+    springtrap: {
+        active: false,
+        cooldown: 0,
+    },
     resetAll: function(){
         gameState.foxy.active = false;
         gameState.bonnie.active = false;

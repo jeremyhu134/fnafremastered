@@ -8,7 +8,12 @@ class introNight extends Phaser.Scene {
     create() {
         gameState.intro = this.sound.add('intro');
         gameState.intro.play();
-        this.add.text( window.innerWidth/2-70,window.innerHeight/2-50, `Night${gameState.night}`, {fill: '#FFFFFF', fontSize: '60px'});
+        if(gameState.night == 8){
+            this.add.text( window.innerWidth/2-70,window.innerHeight/2-50, `Night ???`, {fill: '#FFFFFF', fontSize: '60px'});
+        }else{
+            this.add.text( window.innerWidth/2-70,window.innerHeight/2-50, `Night${gameState.night}`, {fill: '#FFFFFF', fontSize: '60px'});
+        }
+        
         var introtimer = this.time.addEvent({
             delay: 3000,
             callback: ()=>{
