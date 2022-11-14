@@ -252,8 +252,8 @@
             gameState.camscene = this;
         }
         update(){
-            
             if(bonniecooldown <= 10){
+                console.log("bo")
                 if(camPOS == bonniePOS){
                     gameState.static.play();
                     gameState.camerabg.destroy();
@@ -273,6 +273,7 @@
                 });
             }
             if(chicacooldown <= 10){
+                console.log("ch")
                 if(camPOS == chicaPOS){
                     gameState.static.play();
                     gameState.camerabg.destroy();
@@ -292,6 +293,7 @@
                 });
             }
             if(freddycooldown <= 25){
+                console.log("fre")
                 if(camPOS == freddyPOS){
                     gameState.static.play();
                     gameState.camerabg.destroy();
@@ -310,7 +312,8 @@
                     timeScale: 1,
                 });
             }
-            if(springtrapcooldown <= 10){
+            if(springtrapcooldown <= 10 && gameState.springtrap.active == true){
+                console.log("sp");
                 if(camPOS == springtrapPOS){
                     gameState.static.play();
                     gameState.camerabg.destroy();
@@ -673,7 +676,7 @@
                                 chicaPOS = 10; 
                             }
                         }
-                        else if(chicaPOS == 10){
+                        else if(chicaPOS == 10 && freddyPOS !== 11){
                             chicaPOS = 11;
                         }
                         else if(chicaPOS == 11){
@@ -1399,7 +1402,6 @@
                 }
             });
             gameState.camera.on('pointerover', () => {
-                console.log(foxyPOS);
                 if(power > 0){
                     if(llightOn === true){
                         llightOn = false;
@@ -1830,7 +1832,6 @@
             if(power <= 0){
                 
             }
-            console.log(foxycooldown);
         }
     }
 
