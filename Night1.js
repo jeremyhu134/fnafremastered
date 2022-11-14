@@ -1493,10 +1493,10 @@
             }else if(gameState.night == 4){
                 powerlimit = 480;
             }else if(gameState.night == 5){
-                powerlimit = 456;
+                powerlimit = 460;
             }
             else if(gameState.night == 8){
-                powerlimit = 430;
+                powerlimit = 450;
             }
             time = powerlimit;
             gameState.powerTracker = this.time.addEvent({
@@ -1576,50 +1576,52 @@
                         rdoorOpen = true;
                         llightOn = false;
                         rlightOn = false;
-                        scene.time.addEvent({
-                            delay: Math.ceil(Math.random()*18000)+2000,
-                            callback: ()=>{
-                                var fred = scene.add.sprite(50,100,'freddySing').setOrigin(0,0).setDepth(0).setScale(1);
-                                fred.anims.play('sing',true);
-                                gameState.freddySong.play();
-                                scene.time.addEvent({
-                                    delay: Math.ceil(Math.random()*18000)+2000,
-                                    callback: ()=>{
-                                        gameState.freddySong.setMute(true);
-                                        fred.destroy();
-                                        gameState.officeSprite.anims.play('officeNoPower2',true);
-                                        ldoorSprite.destroy();
-                                        rdoorSprite.destroy();
-                                        scene.time.addEvent({
-                                            delay: Math.ceil(Math.random()*3000)+2000,
-                                            callback: ()=>{
-                                                var fred2 = scene.add.sprite(100,0,'freddy2Jumpscare').setOrigin(0,0).setDepth(4).setScale((window.innerHeight-50)/50);
-                                                fred2.anims.play('freddy2JS',true);
-                                                gameState.robotscream.play();
-                                                scene.time.addEvent({
-                                                    delay: 800,
-                                                    callback: ()=>{
-                                                        gameState.robotscream.setMute(true);
-                                                        scene.scene.stop('Night1');
-                                                        scene.scene.stop('camera');
-                                                        reset();
-                                                        scene.scene.start('gameOver');
-                                                    },
-                                                    startAt: 0,
-                                                    timeScale: 1,
-                                                });
-                                            },
-                                            startAt: 0,
-                                            timeScale: 1,
-                                        });
-                                    },
-                                    startAt: 0,
-                                    timeScale: 1,
-                                });
-                            },
-                            startAt: 0,
-                            timeScale: 1,
-                        });
+                        if(gameState.night !== 8){
+                            scene.time.addEvent({
+                                delay: Math.ceil(Math.random()*18000)+2000,
+                                callback: ()=>{
+                                    var fred = scene.add.sprite(50,100,'freddySing').setOrigin(0,0).setDepth(0).setScale(1);
+                                    fred.anims.play('sing',true);
+                                    gameState.freddySong.play();
+                                    scene.time.addEvent({
+                                        delay: Math.ceil(Math.random()*18000)+2000,
+                                        callback: ()=>{
+                                            gameState.freddySong.setMute(true);
+                                            fred.destroy();
+                                            gameState.officeSprite.anims.play('officeNoPower2',true);
+                                            ldoorSprite.destroy();
+                                            rdoorSprite.destroy();
+                                            scene.time.addEvent({
+                                                delay: Math.ceil(Math.random()*3000)+2000,
+                                                callback: ()=>{
+                                                    var fred2 = scene.add.sprite(100,0,'freddy2Jumpscare').setOrigin(0,0).setDepth(4).setScale((window.innerHeight-50)/50);
+                                                    fred2.anims.play('freddy2JS',true);
+                                                    gameState.robotscream.play();
+                                                    scene.time.addEvent({
+                                                        delay: 800,
+                                                        callback: ()=>{
+                                                            gameState.robotscream.setMute(true);
+                                                            scene.scene.stop('Night1');
+                                                            scene.scene.stop('camera');
+                                                            reset();
+                                                            scene.scene.start('gameOver');
+                                                        },
+                                                        startAt: 0,
+                                                        timeScale: 1,
+                                                    });
+                                                },
+                                                startAt: 0,
+                                                timeScale: 1,
+                                            });
+                                        },
+                                        startAt: 0,
+                                        timeScale: 1,
+                                    });
+                                },
+                                startAt: 0,
+                                timeScale: 1,
+                            });
+                        }
                     }
                 },
                 loop: true,
@@ -1662,7 +1664,7 @@
                         gameState.camerabg = scene.add.sprite(0,0,'CAM2Ac').setOrigin(0,0).setDepth(0).setScale(10);
                     }
                     if(springtrapPOS == 2){
-                        gameState.camerabg = scene.add.sprite(0,0,'springtrapCAM2Ac').setOrigin(0,0).setDepth(0).setScale(3.333);
+                        gameState.camerabg = scene.add.sprite(0,0,'springtrapCAM2Ac').setOrigin(0,0).setDepth(0).setScale(5);
                     }
                 }
                 if(camPOS == 3){
