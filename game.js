@@ -21,7 +21,7 @@ const config = {
 const game = new Phaser.Game(config);
 
 let gameState = {               
-    night: 4,
+    night: 1,
     ldoorOpen: true,
     rdoorOpen: true,
     

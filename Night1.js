@@ -1771,7 +1771,7 @@
                         }
                     }
                     else if(freddyPOS == 8){
-                        gameState.camerabg = scene.add.sprite(0,0,'freddyCAM7c').setOrigin(0,0).setDepth(0).setScale(10);
+                        gameState.camerabg = scene.add.sprite(0,0,'freddyCAM7c').setOrigin(0,0).setDepth(0).setScale(5);
                     }
                     else if(chicaPOS !== 8 && freddyPOS !== 8){
                         gameState.camerabg = scene.add.sprite(0,0,'CAM7c').setOrigin(0,0).setDepth(0).setScale(10);
