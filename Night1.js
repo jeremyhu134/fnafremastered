@@ -1332,6 +1332,7 @@
                     else {
                         gameState.lighttrigger.play(loopSound2);
                         powerlevel += 1;
+                        powerLevelCheck(scene);
                         if(bonniePOS == 0){
                             if(ldoorOpen == true){
                                 gameState.windowscare.play();
