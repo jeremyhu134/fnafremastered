@@ -1703,9 +1703,9 @@
                     else if(bonniePOS !== 5){
                         gameState.camerabg = scene.add.sprite(0,0,'CAM5c').setOrigin(0,0).setDepth(0).setScale(10);
                     }
-                    if(springtrapPOS == 5){
+                    if(springtrapPOS == 5 && gameState.springtrap.active == true){
                         gameState.camerabg = scene.add.sprite(0,0,'springtrapCAM5c').setOrigin(0,0).setDepth(0).setScale(5);
-                    }else if(springtrapPOS !== 5){
+                    }else if(springtrapPOS !== 5 && gameState.springtrap.active == true){
                         gameState.camerabg = scene.add.sprite(0,0,'CAM5c').setOrigin(0,0).setDepth(0).setScale(10);
                     }
                 }
