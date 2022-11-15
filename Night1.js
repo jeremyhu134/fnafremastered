@@ -1346,7 +1346,9 @@
                             llightSprite = this.add.image(0,0,'springtrapllighton').setOrigin(0,0).setScale(5).setDepth(1);
                         }
                         else {
-                            llightSprite = this.add.image(0,0,'llighton').setOrigin(0,0).setScale(10).setDepth(1);
+                            if(gameState.springtrap.active == true){
+                                llightSprite = this.add.image(0,0,'llighton').setOrigin(0,0).setScale(10).setDepth(1);
+                            }
                         }
                     }
                 }
@@ -1399,7 +1401,9 @@
                             rlightSprite = this.add.image(600,0,'springtraprlighton').setOrigin(0,0).setScale(5).setDepth(1).setFlipX(true);
                         }
                         else {
-                            rlightSprite = this.add.image(600,0,'llighton').setOrigin(0,0).setScale(10).setDepth(1).setFlipX(true);
+                            if(gameState.springtrap.active == true){
+                                rlightSprite = this.add.image(600,0,'llighton').setOrigin(0,0).setScale(10).setDepth(1).setFlipX(true);
+                            }
                         }
                     }
                 }
