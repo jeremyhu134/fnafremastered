@@ -292,7 +292,7 @@
                     timeScale: 1,
                 });
             }
-            if(freddycooldown <= 25){
+            if(freddycooldown <= 25 && gameState.freddy.active == true){
                 console.log("fre")
                 if(camPOS == freddyPOS){
                     gameState.static.play();
@@ -394,6 +394,7 @@
                 gameState.bonnie.active = true;
                 chicacooldown = 19000;
                 gameState.chica.active = true;
+                gameState.springtrap.active = false;
             }else if (gameState.night == 2){
                 gameState.phonecall2 = this.sound.add('phonecall2');
                 gameState.phonecall2.play();
@@ -427,6 +428,7 @@
                 freddycooldown = Math.ceil(Math.random()*1000)+1000;
                 gameState.freddy.active = true;
             }else if (gameState.night == 5){
+                gameState.springtrap.active = false;
                 gameState.phonecall5 = this.sound.add('phonecall5');
                 gameState.phonecall5.play();
                 bonniecooldown = Math.ceil(Math.random()*800)+500;
