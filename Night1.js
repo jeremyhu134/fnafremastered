@@ -814,7 +814,7 @@
                             freddyPOS = 11;
                         }
                         else if(freddyPOS == 11){
-                            if(rdoorOpen == false && cameraOn == false){
+                            if(rdoorOpen == false){
                                 gameState.random = Math.ceil(Math.random()*4);
                                 if(gameState.random == 1){
                                     freddyPOS = 8; 
