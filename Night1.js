@@ -1339,6 +1339,9 @@
                             }
                             llightSprite = this.add.image(0,0,'bonniellighton').setOrigin(0,0).setScale(10).setDepth(1);
                         }
+                        else {
+                            llightSprite = this.add.image(0,0,'llighton').setOrigin(0,0).setScale(10).setDepth(1);
+                        }
                         if(springtrapPOS == 100){
                             if(ldoorOpen == true){
                                 
@@ -1393,6 +1396,9 @@
                                 gameState.windowscare.play();
                             }
                             rlightSprite = this.add.image(600,0,'chicallighton').setOrigin(0,0).setScale(10).setDepth(1).setFlipX(true);
+                        }
+                        else {
+                            llightSprite = this.add.image(0,0,'llighton').setOrigin(0,0).setScale(10).setDepth(1);
                         }
                         if(springtrapPOS == 0){
                             if(rdoorOpen == true){
